@@ -20,4 +20,4 @@ def percent():
     return render_template('percent.html',d=d)
 
 if __name__ =='__main__':
-    app.run(debug=True)
+    app.run(debug=False,host='0.0.0.0')
