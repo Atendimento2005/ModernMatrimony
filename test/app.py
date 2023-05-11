@@ -6,17 +6,18 @@ app = Flask(__name__)
 def display():
     return render_template('index.html')
 
-# accept form post
-@app.route('/formsubmit', methods=['POST','GET'])
+# accept submit btn
+@app.route('/result', methods=['POST','GET'])
 def submit():
-    a,b,c,d = request.form['Science'],request.form['Maths'],request.form['English'],request.form['Computer']
-    s = eval(f'{a} + {b} + {c} + {d}')/4
-    return redirect(url_for('Result',marks=s))
+    s = sum(int(x) for x in request.form.getlist('inp'))/4
+    return render_template('result.html',marks=s)
 
-@app.route('/Result/<int:marks>')
-def Result(marks):
-    return render_template('result.html',marks=marks)
-
+#accept percentage btn
+@app.route('/percentage', methods=['POST','GET'])
+def percent():
+    marks = request.form.getlist('inp')
+    d = zip(['Science','Maths','English','Computer'],marks)
+    return render_template('percent.html',d=d)
 
 if __name__ =='__main__':
     app.run(debug=True)
