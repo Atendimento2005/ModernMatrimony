@@ -1,14 +1,22 @@
-from flask import Flask,redirect,url_for
+from flask import Flask,redirect,url_for,render_template,request
 
 app = Flask(__name__) 
 
-@app.route('/<score>') ### Decorator
-def hi(score):
-    return 'Culpa sit pariatur ea proident sunt pariatur sint aliquip fugiat irure.' + score
+@app.route('/')
+def display():
+    return render_template('index.html')
 
-@app.route('/a/<s>')
-def func(s):
-    return redirect(url_for(hi,score=s))
+# accept form post
+@app.route('/formsubmit', methods=['POST','GET'])
+def submit():
+    a,b,c,d = request.form['Science'],request.form['Maths'],request.form['English'],request.form['Computer']
+    s = eval(f'{a} + {b} + {c} + {d}')/4
+    return redirect(url_for('Result',marks=s))
+
+@app.route('/Result/<int:marks>')
+def Result(marks):
+    return render_template('result.html',marks=marks)
+
 
 if __name__ =='__main__':
     app.run(debug=True)
