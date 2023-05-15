@@ -26,7 +26,6 @@ def submit():
     s = tuple(float(x) for x in request.form.getlist('inp'))
     cur.execute(f"INSERT INTO marks(science, maths, english, computer) VALUES {s}")
     db.commit()
-    db.close()
     if request.form.get('result'):  #check from which source request came
         return render_template('result.html',marks=sum(s)/4)
     else:
@@ -38,5 +37,4 @@ def view():
     result_Value = cur.execute("SELECT * FROM  marks")
     if result_Value > 0:
         userDetails = cur.fetchall()
-        db.close()
         return render_template('marks.html', marks=userDetails)
