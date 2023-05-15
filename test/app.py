@@ -1,15 +1,16 @@
 from flask import Flask,redirect,url_for,render_template, request
 from flask_mysqldb import MySQL
-import yaml
+from dotenv import load_dotenv
+load_dotenv()
+import os
 
 app = Flask(__name__) 
 
 # configure db
-db = yaml.load(open('db.yaml'), Loader = yaml.Loader)
-app.config['MYSQL_HOST'] = db['mysql_host']
-app.config['MYSQL_PASSWORD'] = db['mysql_password']
-app.config['MYSQL_USER'] = db['mysql_user']
-app.config['MYSQL_DB'] = db['mysql_db']
+app.config['MYSQL_HOST'] = os.getenv("HOST")
+app.config['MYSQL_PASSWORD'] = os.getenv("PASSWORD")
+app.config['MYSQL_USER'] = os.getenv("USERNAME")
+app.config['MYSQL_DB'] = os.getenv("DATABASE")
 
 mysql = MySQL(app)
 
