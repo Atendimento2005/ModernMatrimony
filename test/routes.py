@@ -35,6 +35,6 @@ def submit():
 def view():
     cur = db.cursor()
     result_Value = cur.execute("SELECT * FROM  marks")
-    if result_Value > 0:
+    if result_Value:
         userDetails = cur.fetchall()
         return render_template('marks.html', marks=userDetails)
