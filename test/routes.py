@@ -1,16 +1,16 @@
 from flask import Blueprint,redirect,url_for,render_template, request
 from flask_mysqldb import MySQL
 
-app = Blueprint('main', __name__)
+main = Blueprint('main', __name__)
 
-mysql = MySQL(app)
+mysql = MySQL(main)
 
-@app.route('/')
+@main.route('/')
 def display():
     return render_template('index.html')
 
 # accept submit btn
-@app.route('/result', methods=['POST','GET'])
+@main.route('/result', methods=['POST','GET'])
 def submit():
     cur = mysql.connection.cursor()
     s = tuple(float(x) for x in request.form.getlist('inp'))
@@ -22,7 +22,7 @@ def submit():
     else:
         return render_template('percent.html',d = zip(['Science','Maths','English','Computer'],list(s)))
 
-@app.route('/view')
+@main.route('/view')
 def view():
     cur = mysql.connection.cursor()
     result_Value = cur.execute("SELECT * FROM  marks")
