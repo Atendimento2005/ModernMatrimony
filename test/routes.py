@@ -5,14 +5,6 @@ import mysql.connector
 
 load_dotenv()
 
-db = mysql.connector.connect(
-    host=os.getenv("HOST"),
-    database=os.getenv("DATABASE"),
-    user=os.getenv("USERNAME"),
-    password=os.getenv("PASSWORD"),
-    ssl_ca=os.getenv("SSL_CERT")
-)
-
 main = Blueprint('main', __name__)
 
 @main.route('/')
@@ -22,10 +14,18 @@ def display():
 # accept submit btn
 @main.route('/result', methods=['POST','GET'])
 def submit():
+    db = mysql.connector.connect(
+        host=os.getenv("HOST"),
+        database=os.getenv("DATABASE"),
+        user=os.getenv("USERNAME"),
+        password=os.getenv("PASSWORD"),
+        ssl_ca=os.getenv("SSL_CERT")
+    )
     cur = db.cursor()
     s = tuple(float(x) for x in request.form.getlist('inp'))
     cur.execute(f"INSERT INTO marks(science, maths, english, computer) VALUES{s}")
     db.commit()
+    db.close()
     if request.form.get('result'):  #check from which source request came
         return render_template('result.html',marks=sum(s)/4)
     else:
@@ -33,7 +33,15 @@ def submit():
 
 @main.route('/view')
 def view():
+    db = mysql.connector.connect(
+        host=os.getenv("HOST"),
+        database=os.getenv("DATABASE"),
+        user=os.getenv("USERNAME"),
+        password=os.getenv("PASSWORD"),
+        ssl_ca=os.getenv("SSL_CERT")
+    )
     cur = db.cursor()
     cur.execute("SELECT * FROM marks")
     userDetails = cur.fetchall()
+    db.close()
     return render_template('marks.html', marks=userDetails)
