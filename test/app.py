@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 load_dotenv()
 import os 
 
-from .routes import main
+from .routes import app as apps
 
 def create_app():
 
@@ -15,6 +15,6 @@ def create_app():
     app.config['MYSQL_USER'] = os.environ.get("USERNAME")
     app.config['MYSQL_DB'] = os.environ.get("DATABASE")
 
-    app.register_blueprint(main)
+    app.register_blueprint(apps)
 
     return app
