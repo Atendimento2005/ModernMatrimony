@@ -1,9 +1,8 @@
 from flask import Blueprint,redirect,url_for,render_template, request
 from flask_mysqldb import MySQL
+from app import mysql
 
 main = Blueprint('main', __name__)
-
-mysql = MySQL(main)
 
 @main.route('/')
 def display():

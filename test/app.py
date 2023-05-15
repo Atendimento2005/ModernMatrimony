@@ -1,7 +1,10 @@
 from flask import Flask
 from dotenv import load_dotenv
 load_dotenv()
-import os 
+import os
+from flask_mysqldb import MySQL
+
+mysql = MySQL()
 
 from routes import main
 
@@ -14,6 +17,8 @@ def create_app():
     app.config['MYSQL_PASSWORD'] = os.environ.get("PASSWORD")
     app.config['MYSQL_USER'] = os.environ.get("USERNAME")
     app.config['MYSQL_DB'] = os.environ.get("DATABASE")
+
+    mysql.init_app(app)
 
     app.register_blueprint(main)
 
