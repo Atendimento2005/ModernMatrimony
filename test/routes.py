@@ -1,15 +1,16 @@
 from flask import Blueprint,redirect,url_for,render_template, request
-from dotenv import load_dotenv
-load_dotenv()
 import os
-import pymysql
+from dotenv import load_dotenv
+import mysql.connector
 
-mysql = pymysql.connect(
-  host= os.getenv("HOST"),
-  user=os.getenv("USERNAME"),
-  passwd= os.getenv("PASSWORD"),
-  db= os.getenv("DATABASE"),
-  ssl_ca=os.getenv("SSL_CERT")
+load_dotenv()
+
+db = mysql.connector.connect(
+    host=os.getenv("HOST"),
+    database=os.getenv("DATABASE"),
+    user=os.getenv("USERNAME"),
+    password=os.getenv("PASSWORD"),
+    ssl_ca=os.getenv("SSL_CERT")
 )
 
 main = Blueprint('main', __name__)
@@ -21,11 +22,11 @@ def display():
 # accept submit btn
 @main.route('/result', methods=['POST','GET'])
 def submit():
-    cur = mysql.cursor()
+    cur = db.cursor()
     s = tuple(float(x) for x in request.form.getlist('inp'))
     cur.execute(f"INSERT INTO marks(science, maths, english, computer) VALUES {s}")
-    mysql.commit()
-    mysql.close()
+    db.commit()
+    db.close()
     if request.form.get('result'):  #check from which source request came
         return render_template('result.html',marks=sum(s)/4)
     else:
@@ -33,9 +34,9 @@ def submit():
 
 @main.route('/view')
 def view():
-    cur = mysql.cursor()
+    cur = db.cursor()
     result_Value = cur.execute("SELECT * FROM  marks")
     if result_Value > 0:
         userDetails = cur.fetchall()
-        mysql.close()
+        db.close()
         return render_template('marks.html', marks=userDetails)
