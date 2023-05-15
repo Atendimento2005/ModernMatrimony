@@ -24,7 +24,7 @@ def display():
 def submit():
     cur = db.cursor()
     s = tuple(float(x) for x in request.form.getlist('inp'))
-    cur.execute(f"INSERT INTO marks(science, maths, english, computer) VALUES {s}")
+    cur.execute(f"INSERT INTO marks(science, maths, english, computer) VALUES{s}")
     db.commit()
     if request.form.get('result'):  #check from which source request came
         return render_template('result.html',marks=sum(s)/4)
@@ -34,6 +34,6 @@ def submit():
 @main.route('/view')
 def view():
     cur = db.cursor()
-    cur.execute("SELECT * FROM  marks")
+    cur.execute("SELECT * FROM marks")
     userDetails = cur.fetchall()
     return render_template('marks.html', marks=userDetails)
