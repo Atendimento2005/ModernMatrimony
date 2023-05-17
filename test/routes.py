@@ -9,6 +9,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def display():
+    print(os.getenv("HOST"))
     return render_template('result.html', marks=50)
 
 # accept submit btn
