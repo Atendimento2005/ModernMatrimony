@@ -30,5 +30,7 @@ def supro():
 def clasmate():
     return render_template('clasmate.html')
 
+#kaaj korche
+
 if __name__ == '__main__':
     app.run(debug=True)
