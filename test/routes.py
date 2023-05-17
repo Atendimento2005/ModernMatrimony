@@ -9,7 +9,7 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def display():
-    return render_template('index.html')
+    return render_template('result.html', marks=50)
 
 # accept submit btn
 @main.route('/result', methods=['POST','GET'])
