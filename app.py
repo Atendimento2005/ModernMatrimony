@@ -13,6 +13,11 @@ def index():
 @app.route('/arimkaji')
 def arimkaji():
     return render_template('arimkaji.html')
+
+@app.route('/rajukaju')
+def rajukaju():
+    return render_template('rajukaju.html')
+
         
 
 if __name__ == '__main__':
