@@ -1,5 +1,5 @@
 @echo off
 cd venv/scripts
-activate
+start activate
 cd ../..
 echo "Done"
