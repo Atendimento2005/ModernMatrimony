@@ -18,7 +18,6 @@ def arimkaji():
 def rajukaju():
     return render_template('rajukaju.html')
 
-<<<<<<< Updated upstream
 @app.route('/riddhi')
 def riddhi():
     return render_template('riddhi.html')
@@ -26,13 +25,11 @@ def riddhi():
 @app.route('/supro')
 def supro():
     return render_template('supro.html')            
-=======
         
 @app.route('/clasmate')
 def clasmate():
     return render_template('clasmate.html')
 
->>>>>>> Stashed changes
 
 if __name__ == '__main__':
     app.run(debug=True)
