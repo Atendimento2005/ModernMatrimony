@@ -18,7 +18,9 @@ def arimkaji():
 def rajukaju():
     return render_template('rajukaju.html')
 
-        
+@app.route('/riddhi')
+def riddhi():
+    return render_template('riddhi.html')        
 
 if __name__ == '__main__':
     app.run(debug=True)
