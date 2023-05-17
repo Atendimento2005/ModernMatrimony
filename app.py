@@ -24,7 +24,7 @@ def riddhi():
 
 @app.route('/supro')
 def supro():
-    return render_template('supro.html')            
+    return render_template('supro.html')
         
 @app.route('/clasmate')
 def clasmate():
