@@ -20,7 +20,11 @@ def rajukaju():
 
 @app.route('/riddhi')
 def riddhi():
-    return render_template('riddhi.html')        
+    return render_template('riddhi.html')
+
+@app.route('/supro')
+def supro():
+    return render_template('supro.html')            
 
 if __name__ == '__main__':
     app.run(debug=True)
