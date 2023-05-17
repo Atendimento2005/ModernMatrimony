@@ -13,7 +13,22 @@ def index():
 @app.route('/arimkaji')
 def arimkaji():
     return render_template('arimkaji.html')
+
+@app.route('/rajukaju')
+def rajukaju():
+    return render_template('rajukaju.html')
+
+@app.route('/riddhi')
+def riddhi():
+    return render_template('riddhi.html')
+
+@app.route('/supro')
+def supro():
+    return render_template('supro.html')            
         
+@app.route('/clasmate')
+def clasmate():
+    return render_template('clasmate.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
