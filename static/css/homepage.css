@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+*{
+    box-sizing: border-box;
+    padding: 0;   
+    margin: 0;
+}
+
+body{
+    background: linear-gradient(307.05deg, #D2CDFF 35.26%, #FFFFFF 100.99%);
+}
+
+nav{
+    height: 100px;
+    
+}
+
+h1{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 75px;
+    line-height: 76px;
+
+    letter-spacing: -0.05em;
+
+    color: #3F1ABE;
+}

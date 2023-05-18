@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Modern Matrimony</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+{% endblock %}
+
+{% block body %}
+<nav>
+    <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+</nav>
+{% endblock %}
