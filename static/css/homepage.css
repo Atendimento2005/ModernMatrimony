@@ -15,8 +15,12 @@ bhtml, body {
     background: linear-gradient(307.05deg, #D2CDFF 35.26%, #FFFFFF 100.99%);
     height: 100%;
     width: 100%;
-    position: absolute;
+    position: fixed;
     z-index: -1;
+}
+
+a{
+    text-decoration: none;
 }
 
 nav{
