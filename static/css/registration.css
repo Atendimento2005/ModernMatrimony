@@ -26,7 +26,7 @@ body{
 }
 
 nav{
-    height: 100px;
+    height: 150px;
     display: flex;
     justify-content: center;
     font-family: 'Inter';
@@ -37,6 +37,9 @@ nav{
     /* identical to box height */
     letter-spacing: 0.01em;
     padding: 60px;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
 }
 
 #logo{
@@ -52,27 +55,28 @@ nav{
     line-height: 35px;
     letter-spacing: -0.03em;
     color: #5831DD;
-    margin-top: 1.75%;
 }
 
 #main-container{
     display: flex;
     justify-content: center;
     align-items: center;
-    /* flex-grow: 1; */
+    flex-grow: 1;
 }
 
 #form-container{
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgba(255, 255, 255, 0.2);
     box-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12);
     border-radius: 50px;
-    padding: 50px;
-    height: 500px;
-    aspect-ratio: 1.61;
+    padding: 20px;
+    height: 550px;
+    width: 750px;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
+    margin-top: 80px;
+
 }
 
 h1{
@@ -95,7 +99,7 @@ h2{
     /* or 117% */
     text-align: center;
     letter-spacing: -0.03em;
-    padding-top: 1.25vh;
+    padding-top: 10px;
     color: #C4B2FF;
 }
 
@@ -105,7 +109,7 @@ h2{
     justify-content: space-between;
     flex-wrap: wrap;
     width: 100%;
-    height: 80%;
+    height: 70%;
 }
 
 .text-input{
@@ -120,15 +124,15 @@ h2{
 .text-input > img{
     position: absolute;
     aspect-ratio: 1;
-    height: 2.8vh;
+    height: 24px;
     align-items: flex-start;
-    left: 5.5vw;
+    left: 56px;
 }
 
 .input{
     width: 75%;
-    height: 7.5vh;
-    padding-left: 2.6vw;
+    height: 40px;
+    padding-left: 41.5px;
     background: rgba(255, 255, 255, 0.7);
     /* Focus ring */
     box-shadow: 0px 0px 0px 5px rgba(132, 66, 211, 0.48);
@@ -142,7 +146,6 @@ h2{
     line-height: 24px;
     letter-spacing: -0.01em;
     color: rgba(47, 43, 67, 0.6);
-    
 }
 
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{ 
