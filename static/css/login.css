@@ -26,7 +26,7 @@ body{
 }
 
 nav{
-    height: 100px;
+    height: 150px;
     display: flex;
     justify-content: center;
     font-family: 'Inter';
@@ -34,9 +34,11 @@ nav{
     font-weight: 700;
     font-size: 20px;
     line-height: 34px;
-    /* identical to box height */
     letter-spacing: 0.01em;
     padding: 60px;
+    align-items: center;
+    position: fixed;
+    width: 100vw;
 }
 
 #logo{
@@ -52,7 +54,6 @@ nav{
     line-height: 35px;
     letter-spacing: -0.03em;
     color: #5831DD;
-    margin-top: 1.75%;
 }
 
 #main-container{
@@ -66,13 +67,14 @@ nav{
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgba(255, 255, 255, 0.2);
     box-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12);
     border-radius: 50px;
-    padding: 50px;
-    height: 85%;
-    aspect-ratio: 1.61;
+    padding: 20px;
+    height: 550px;
+    width: 900px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
+    margin-top: 80px;
 }
 
 h1{
@@ -90,7 +92,7 @@ h1{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 50%;
     height: 60%;
 }
@@ -99,19 +101,23 @@ h1{
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    position: relative;
 }
 
 .text-input > img{
     position: absolute;
     aspect-ratio: 1;
-    height: 2.8vh;
-    margin-left: 0.75vw;
+    height: 24px;
+    align-items: flex-start;
+    left: 11px;
 }
 
 .input{
     width: 100%;
-    height: 7.5vh;
-    padding-left: 2.6vw;
+    height: 57px;
+    padding-left: 41.5px;
     background: rgba(255, 255, 255, 0.7);
     /* Focus ring */
     box-shadow: 0px 0px 0px 5px rgba(132, 66, 211, 0.48);
@@ -125,7 +131,12 @@ h1{
     line-height: 24px;
     letter-spacing: -0.01em;
     color: rgba(47, 43, 67, 0.6);
+    transition: .5s;
     
+}
+
+.input:focus {
+    box-shadow: 00px 0px 0px 5px hsla(254, 50%, 50%, 0.7);
 }
 
 .check-input{
@@ -184,7 +195,7 @@ h1{
 
 #submit{
     width: 100%;
-    height: 7.5vh;
+    height: 57px;
     background: #674CBF;
     box-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12);
     border-radius: 50px;
