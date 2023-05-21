@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Modern Matrimony</title>
+<link rel="stylesheet" href={{ url_for('static', filename='css/login.css') }}>
+{% endblock %}
+
+{% block body %}
+<div id="background"></div>
+<nav>
+    <div id="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+        <div class="logo-text">Modern<br>Matrimony</div>
+    </div>
+</nav>
+<div id="main-container">
+    <div id="form-container">
+        <h1>Log in to Your Account</h1>
+        <form class="login-form" action="">
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/at_icon.svg') }}" alt="">
+                <input class="input" type="email" name="input" id="email" placeholder="Enter Email I.D.">
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/key_icon.svg') }}" alt="">
+                <input class="input" type="password" name="input" id="password" placeholder="Enter Password">
+            </div>
+            <div class="check-input">
+                <input type="checkbox" name="input" id="checkbox" value="Keep me logged in">
+                <label for="checkbox" id="text-label">Keep me logged in</label>
+            </div>
+            <input id="submit" type="submit" value="Log In">
+        </form>
+        <div class="register-text">
+            <p>Don't have an account?</p>
+            <a href="">Register Now!</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

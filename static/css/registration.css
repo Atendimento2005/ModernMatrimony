@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+#background{
+    background: linear-gradient(307.05deg, #D2CDFF 35.26%, #FFFFFF 100.99%);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+nav{
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 34px;
+    /* identical to box height */
+    letter-spacing: 0.01em;
+    padding: 60px;
+}
+
+#logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 45px;
+    margin-right: auto;
+    line-height: 35px;
+    letter-spacing: -0.03em;
+    color: #5831DD;
+    margin-top: 1.75%;
+}
+
+#main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* flex-grow: 1; */
+}
+
+#form-container{
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12);
+    border-radius: 50px;
+    padding: 50px;
+    height: 500px;
+    aspect-ratio: 1.61;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+h1{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 45px;
+    line-height: 35px;
+    /* identical to box height, or 78% */
+    letter-spacing: -0.03em;
+    color: rgba(54, 21, 168, 0.7);
+}
+
+h2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 35px;
+    /* or 117% */
+    text-align: center;
+    letter-spacing: -0.03em;
+    padding-top: 1.25vh;
+    color: #C4B2FF;
+}
+
+.registration-form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 80%;
+}
+
+.text-input{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    position: relative;
+}
+
+.text-input > img{
+    position: absolute;
+    aspect-ratio: 1;
+    height: 2.8vh;
+    align-items: flex-start;
+    left: 5.5vw;
+}
+
+.input{
+    width: 75%;
+    height: 7.5vh;
+    padding-left: 2.6vw;
+    background: rgba(255, 255, 255, 0.7);
+    /* Focus ring */
+    box-shadow: 0px 0px 0px 5px rgba(132, 66, 211, 0.48);
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    color: rgba(47, 43, 67, 0.6);
+    
+}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{ 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+#submit{
+    width: 40%;
+    height: 7.5vh;
+    background: #674CBF;
+    box-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12);
+    border-radius: 50px;
+    color: #FFFFFF;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    margin: auto;
+    border: none;
+}
