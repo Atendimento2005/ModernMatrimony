@@ -22,5 +22,9 @@ def login():
 def registration():
     return render_template('registration.html')
 
+@app.route('/registration2')
+def registration2():
+    return render_template('registration2.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
