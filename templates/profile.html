@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Modern Matrimony</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+
+{% endblock %}
+
+{% block body %}
+<div class="background"></div>
+<nav>
+    <div id="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+        <div class="logo-text">Modern<br>Matrimony</div>
+    </div>
+</nav>
+<div class="main-container">
+    <h1>Complete Your Profile !</h1>
+    <form action="" class="form">
+        <div class="img-container"></div>
+        <div class="img-container"></div>
+        <input type="submit" value="Finish">
+    </form>
+</div>
+
+{% endblock %}
