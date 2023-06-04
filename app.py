@@ -30,6 +30,10 @@ def registration2():
 def profile():
     return render_template('profile.html')
 
+@app.route('/interests')
+def interests():
+    return render_template('interests.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
 
