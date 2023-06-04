@@ -26,55 +26,56 @@ body{
 }
 
 nav{
-    height: 150px;
-    display: flex;
-    justify-content: center;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
     line-height: 34px;
     letter-spacing: 0.01em;
-    padding: 60px;
+    height: 20vh;
+    padding: 3rem;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    position: fixed;
-    width: 100vw;
+    justify-content: flex-end;
 }
 
 #logo{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
     font-family: 'Cormorant Garamond';
     font-style: normal;
     font-weight: 700;
     font-size: 45px;
-    margin-right: auto;
+    /* margin-right: auto; */
     line-height: 35px;
     letter-spacing: -0.03em;
     color: #5831DD;
 }
 
 #main-container{
+    padding: 3rem;
+    padding-top: 0;
+    height: calc(100vh - 6rem);
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-grow: 1;
+    justify-content: center;
 }
 
 #form-container{
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgba(255, 255, 255, 0.2);
     box-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12);
     border-radius: 50px;
-    padding: 20px;
-    height: 550px;
-    width: 900px;
+    padding: 3rem;
+    height: 65.5vh;
+    aspect-ratio: 1.6;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
-    margin-top: 80px;
+    /* margin-top: 80px; */
 }
 
 h1{
@@ -111,13 +112,13 @@ h1{
     aspect-ratio: 1;
     height: 24px;
     align-items: flex-start;
-    left: 11px;
+    left: 15px;
 }
 
 .input{
     width: 100%;
-    height: 57px;
-    padding-left: 41.5px;
+    height: 5.5vh;
+    padding-left: 50px;
     background: rgba(255, 255, 255, 0.7);
     /* Focus ring */
     box-shadow: 0px 0px 0px 5px rgba(132, 66, 211, 0.48);
@@ -195,7 +196,7 @@ h1{
 
 #submit{
     width: 100%;
-    height: 57px;
+    height: 50px;
     background: #674CBF;
     box-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12);
     border-radius: 50px;
