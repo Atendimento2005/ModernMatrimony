@@ -137,7 +137,7 @@ h1{
 }
 
 .input:focus {
-    box-shadow: 00px 0px 0px 5px hsla(254, 50%, 50%, 0.7);
+    box-shadow: 0px 0px 2px 7px hsla(254, 50%, 50%, 0.7);
 }
 
 .check-input{
@@ -208,6 +208,15 @@ h1{
     line-height: 24px;
     letter-spacing: -0.01em;
     border: none;
+    transition: transform 200ms ease-in;
+    transition: color 200ms ease-in;
+    transition: background-color 200ms ease-in;
+}
+
+#submit:hover{
+    transform: scale(1.01);
+    color: #674CBF;
+    background-color: #FFFFFF;
 }
 
 p{
