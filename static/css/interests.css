@@ -95,7 +95,7 @@ p{
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.01em;
-    color: rgba(0, 0, 0, 0.7);
+    /* color: rgba(0, 0, 0, 0.7); */
 }
 
 a{
@@ -129,7 +129,10 @@ a{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    color: rgba(125, 7, 100, 0.7);
+    /* transition: transform 0.5s ease-out;
+    transition: color 200ms ease-in; */
+    transition: all 200ms ease-in;
 }
 
 .interest-image{
@@ -148,6 +151,8 @@ button{
 
 .checked{
     transform: scale(1.05);
+    background-color: #674CBF;
+    color: #fff;
 }
 
 .interest-text{
@@ -160,7 +165,6 @@ button{
     text-align: center;
     letter-spacing: -0.055em;
 
-    color: rgba(125, 7, 100, 0.7);
 }
 
 .button{
@@ -174,9 +178,7 @@ button{
     background: #674CBF;
     border-radius: 100px;
     padding: 10px 45px;
-    transition: transform 200ms ease-in;
-    transition: color 200ms ease-in;
-    transition: background-color 200ms ease-in;
+    transition: all 200ms ease-in;
 }
 
 .button:hover{

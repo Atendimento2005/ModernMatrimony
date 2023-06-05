@@ -12,7 +12,7 @@ app.app_context().push()
 
 @app.route('/')
 def index():
-    return render_template('homepage.html')
+    return render_template('landing.html')
 
 @app.route('/login')
 def login():
