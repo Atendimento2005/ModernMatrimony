@@ -38,6 +38,10 @@ def interests():
 def home():
     return render_template('homepage.html')
 
+@app.route('/form')
+def form():
+    return render_template('form.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
 

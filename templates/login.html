@@ -21,11 +21,11 @@
         <form class="login-form" action="">
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/at_icon.svg') }}" alt="">
-                <input class="input" type="email" name="input" id="email" placeholder="Enter Email I.D.">
+                <input class="input" type="email" name="input" id="email" placeholder="Enter Email I.D." required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/key_icon.svg') }}" alt="">
-                <input class="input" type="password" name="input" id="password" placeholder="Enter Password">
+                <input class="input" type="password" name="input" id="password" placeholder="Enter Password" required>
             </div>
             <div class="check-input">
                 <input type="checkbox" name="input" id="checkbox" value="Keep me logged in">
