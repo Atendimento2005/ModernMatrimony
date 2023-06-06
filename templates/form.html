@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Modern Matrimony</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form.css' ) }}">
+{% endblock %}
+
+{% block body %}
+<div id="background"></div>
+<nav>
+    <div id="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+        <div class="logo-text">Modern<br>Matrimony</div>
+    </div>
+</nav>
+<form action="" id="main-container">
+    <div class="form-container" id="form-container1">
+        <div class="head">
+            <h1>Registration</h1>
+            <h2>Personal Details</h2>
+        </div>
+        <div class="registration-form">
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/person_icon.svg') }}" alt="">
+                <input type="text" class="input" placeholder="First Name" name="input" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/person_icon.svg') }}" alt="">
+                <input type="text" class="input" placeholder="Last Name" name="input" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/person_icon.svg') }}" alt="">
+                <input type="number" class="input" placeholder="Phone Number" name="input" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/at_icon.svg') }}" alt="">
+                <input type="email" class="input" placeholder="Email I.D." name="input" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/key_icon.svg') }}" alt="">
+                <input type="password" class="input" placeholder="Password" name="input" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/gender_icon.svg') }}" alt="">
+                <input type="text" class="input" placeholder="Gender" name="input" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/pin_icon.svg') }}" alt="">
+                <input type="number" class="input" placeholder="Pin Code" name="input" required minlength="6">
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/city_icon.svg') }}" alt="">
+                <input type="text" class="input" placeholder="City" name="input" required>
+            </div>
+            <input id="submit1" class="submit" type="button" value="Next">
+        </div>
+    </div>
+    <div class="form-container display" id="form-container2">
+        <div class="head">
+            <h1>Registration</h1>
+            <h2>Other Details</h2>
+        </div>
+        <div class="registration-form">
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/board_icon.svg') }}" alt="">
+                <input type="text" name="input" class="input" placeholder="Highest Education Level">
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/briefcase_icon.svg') }}" alt="">
+                <input type="text" name="input" class="input" placeholder="Occupation">
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/school_icon.svg') }}" alt="">
+                <input type="text" name="input" class="input" placeholder="Alma Matter">
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/cake_icon.svg') }}" alt="">
+                <input type="text" name="input" class="input" placeholder="Date of Birth" onfocus="this.type='date'" onblur="this.type='text'">
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/religion_icon.svg') }}" alt="">
+                <input type="text" name="input" class="input" placeholder="Religion">
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/caste_icon.svg') }}" alt="">
+                <input type="text" name="input" class="input" placeholder="Caste">
+            </div>
+            <div class="check-input">
+                <input type="checkbox" name="checkbox" id="checkbox">
+                <label for="checkbox" id="text-label">I Agree to All the <a href="">Terms and Conditions</a></label>
+            </div>
+            <input type="submit" id="submit2" class="" value="Next">
+        </div>
+    </div>
+</form>
+
+<script>
+    var x = document.getElementsByClassName('submit');
+    var form = document.getElementById('main-container');
+    var l = x.length;
+    for (i=0;i<l;i++){
+        x[i].onclick = ((num, form) => {
+            return () => {
+                if(form.checkValidity()){
+                    document.getElementsByClassName('form-container')[num].classList.add('current')
+                    document.getElementsByClassName('form-container')[num+1].classList.remove('display')
+                }
+            }
+        })(i, form)
+    }
+</script>
+{% endblock %}
