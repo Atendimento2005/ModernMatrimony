@@ -10,9 +10,26 @@
 <img id="bgimage" src="{{ url_for('static', filename='images/bgimage.png')}}" alt="">
 
 <nav>
+    <div class="nav-left-container">
+        <img src="/static/images/icons/temp.svg" alt="temp">
+        <!-- TEMP IMG -->
+    </div>
     <div id="logo">
         <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
         <div class="logo-text">Modern<br>Matrimony</div>
+    </div>
+    <div class="nav-right-container">
+        <div class="notifications-icon-container pending">
+            <img class="notifications-icon" src="/static/images/icons/notifications.svg" alt="notifications" onclick="toggleNotifications()">
+            <div id="notifications-container" class="dnone">
+                <div class="notification">Arim Kaji</div>
+                <div class="notification">Boddo</div>
+                <div class="notification">Paji</div>
+            </div>
+        </div>
+        <a href="/">
+            <img src="/static/images/profiles/rahul.jpg" alt="profile-picture" class="nav-profile-icon">
+        </a>
     </div>
 </nav>
 
@@ -30,144 +47,20 @@
     <div class="suggestion-container">
         <p class="suggestion-heading">Near You  :</p>
         <div class="suggestion-card-container" id="nearyou">
-            <div class="suggestion-card">
-                <div class="suggestion-img-container">
-                    <img class = "suggestion-img"src="/static/images/interests/dancing.png" alt="">
-                </div>
-                <div class="suggestion-info">
-                    <p class="suggestion-name">Polash Baul, 25</p>
-                    <p class="suggestion-bio">Passionate and curious, I embrace new experiences arim kaji boddo paji</p>
-                </div>
-                <div class="suggestion-tags-container">
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Photography</p>
-                    </div>
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Cooking</p>
-                    </div>
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Gardening</p>
-                    </div>
-                </div>
+                        
+        </div>
+    </div>
+    <div class="my-profile-container">
+        <div class="profile-header">
+            <p class="suggestion-heading">Your Profile Card:</p>
+            <a href="/test" class="profile-edit-link">Edit</a>
+        </div>
+        <div class="my-profile">
+            <img class = 'profile-picture' src="/static/images/profiles/rahul.jpg" alt="profile picture">
+            <div class="profile-info-container">
+                <p class="profile-info-name">Balwinder Singh, 27</p>
+                <p class="profile-info-bio">Lorem ipsum dolor sit amet consectetur adipisicing elit. In quidem voluptas aliquam, cum quisquam molestias ad illum repudiandae, harum sint provident expedita quasi, porro eos mollitia! Ab repellendus est nesciunt doloremque neque magni architecto, pariatur quisquam eaque sint vero. Quos saepe quo, consequatur maxime officia et quidem dolorum blanditiis possimus.</p>
             </div>
-            <div class="suggestion-card">
-                <div class="suggestion-img-container">
-                    <img class = "suggestion-img"src="/static/images/profiles/rahul.jpg" alt="">
-                </div>
-                <div class="suggestion-info">
-                    <p class="suggestion-name">Polash Baul, 25</p>
-                    <p class="suggestion-bio">Passionate and curious, I embrace new experiences arim kaji boddo paji</p>
-                </div>
-                <div class="suggestion-tags-container">
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Photography</p>
-                    </div>
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Cooking</p>
-                    </div>
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Gardening</p>
-                    </div>
-                </div>
-            </div>
-            <div class="suggestion-card">
-                <div class="suggestion-img-container">
-                    <img class = "suggestion-img"src="/static/images/profiles/rahul.jpg" alt="">
-                </div>
-                <div class="suggestion-info">
-                    <p class="suggestion-name">Polash Baul, 25</p>
-                    <p class="suggestion-bio">Passionate and curious, I embrace new experiences arim kaji boddo paji</p>
-                </div>
-                <div class="suggestion-tags-container">
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Photography</p>
-                    </div>
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Cooking</p>
-                    </div>
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Gardening</p>
-                    </div>
-                </div>
-            </div>
-            <div class="suggestion-card">
-                <div class="suggestion-img-container">
-                    <img class = "suggestion-img"src="/static/images/profiles/rahul.jpg" alt="">
-                </div>
-                <div class="suggestion-info">
-                    <p class="suggestion-name">Polash Baul, 25</p>
-                    <p class="suggestion-bio">Passionate and curious, I embrace new experiences arim kaji boddo paji</p>
-                </div>
-                <div class="suggestion-tags-container">
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Photography</p>
-                    </div>
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Cooking</p>
-                    </div>
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Gardening</p>
-                    </div>
-                </div>
-            </div>
-            <div class="suggestion-card">
-                <div class="suggestion-img-container">
-                    <img class = "suggestion-img"src="/static/images/profiles/rahul.jpg" alt="">
-                </div>
-                <div class="suggestion-info">
-                    <p class="suggestion-name">Polash Baul, 25</p>
-                    <p class="suggestion-bio">Passionate and curious, I embrace new experiences arim kaji boddo paji</p>
-                </div>
-                <div class="suggestion-tags-container">
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Photography</p>
-                    </div>
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Cooking</p>
-                    </div>
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Gardening</p>
-                    </div>
-                </div>
-            </div>
-            <div class="suggestion-card">
-                <div class="suggestion-img-container">
-                    <img class = "suggestion-img"src="/static/images/profiles/rahul.jpg" alt="">
-                </div>
-                <div class="suggestion-info">
-                    <p class="suggestion-name">Polash Baul, 25</p>
-                    <p class="suggestion-bio">Passionate and curious, I embrace new experiences arim kaji boddo paji</p>
-                </div>
-                <div class="suggestion-tags-container">
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Photography</p>
-                    </div>
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Cooking</p>
-                    </div>
-                    <div class="tag">
-                        <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                        <p class="suggestion-tag-text">Gardening</p>
-                    </div>
-                </div>
-            </div>            
         </div>
     </div>
 </div>
@@ -176,15 +69,13 @@
     profiles = [{id: 'rahul', name: 'Rahul', age: 30, bio: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, nobis!", hobbies: ["Photography", "Gardening", "Cooking"]}]
     window.onload = () => {
         suggestionsContainer = document.getElementById("ourpicks")
-        for (i in profiles) {
-            profile = profiles[i]
+        for (i=0; i < 6; i++) {
+            profile = profiles[0]
             card = document.createElement('div');
             card.classList.add("suggestion-card");
             card.innerHTML = 
             `
-            <div class="suggestion-img-container">
-                <img class = "suggestion-img"src="/static/images/profiles/${profile.id}.jpg" alt="profile-picture">
-            </div>
+            <img class = "suggestion-img"src="/static/images/profiles/${profile.id}.jpg" alt="profile-picture">
             <div class="suggestion-info">
                 <p class="suggestion-name">${profile.name}, ${profile.age}</p>
                 <p class="suggestion-bio">${profile.bio}</p>
@@ -207,5 +98,10 @@
             suggestionsContainer.appendChild(card)
         };
     };
+
+    function toggleNotifications(){
+        notifications = document.getElementById('notifications-container')
+        notifications.classList.toggle("dnone")
+    }
 </script>
 {% endblock %}

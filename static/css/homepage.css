@@ -33,6 +33,8 @@ body{
     position: absolute;
     z-index: -1;
     height: 100%;
+    width: 100%;
+    object-fit: cover;
     overflow: hidden;
 }
 
@@ -40,16 +42,17 @@ nav{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 34px;
+    font-size: 1.25rem;
+    line-height: 2.125rem;
     letter-spacing: 0.01em;
     height: 20vh;
     padding: 3rem;
     padding-bottom: 0;
+    width: 100vw;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
 #logo{
@@ -59,9 +62,9 @@ nav{
     font-family: 'Cormorant Garamond';
     font-style: normal;
     font-weight: 700;
-    font-size: 45px;
+    font-size: 2.8125rem;
     /* margin-right: auto; */
-    line-height: 35px;
+    line-height: 2.1875rem;
     letter-spacing: -0.03em;
     color: #5831DD;
 }
@@ -81,8 +84,8 @@ h1{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 800;
-    font-size: 45px;
-    line-height: 55px;
+    font-size: 2.8125rem;
+    line-height: 3.4375rem;
     /* identical to box height, or 110% */
 
     text-align: center;
@@ -96,8 +99,8 @@ h2{
     font-family: 'Cormorant Garamond';
     font-style: italic;
     font-weight: 700;
-    font-size: 30px;
-    line-height: 31px;
+    font-size: 1.875rem;
+    line-height: 1.9375rem;
     /* identical to box height, or 68% */
 
     letter-spacing: -0.05em;
@@ -119,15 +122,15 @@ h2{
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 20px 0;
+    padding: 1.25rem 0;
 }
 
 .suggestion-heading{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 40px;
-    line-height: 55px;
+    font-size: 2.5rem;
+    line-height: 3.4375rem;
 
     text-align: center;
     letter-spacing: -0.075em;
@@ -136,7 +139,7 @@ h2{
     color: #9A7FF6;
 }
 .suggestion-card-container{
-    height: 300px;
+    height: 18.75rem;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -145,7 +148,8 @@ h2{
 }
 
 .suggestion-card{
-    width: 11vw;
+    width: 10rem;
+    max-width: 11vw;
     height: 100%;
     background: rgba(255, 255, 255, 0.5);
     border: 2.80154px solid rgba(40, 17, 120, 0.4);
@@ -159,13 +163,10 @@ h2{
     overflow: hidden;
 }
 
-.suggestion-img-container{
-    height: 45%;
-    overflow: hidden;
-}
-
 .suggestion-img{
-    height: 100%;
+    height: 45%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .suggestion-info{
@@ -181,7 +182,7 @@ h2{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 645;
-    font-size: 16.8092px;
+    font-size: 1.2rem;
     line-height: 18px;
     /* identical to box height, or 105% */
 
@@ -196,7 +197,7 @@ h2{
     font-family: 'Inter';
     font-style: italic;
     font-weight: 449;
-    font-size: 12.3268px;
+    font-size: 1rem;
     line-height: 18px;
     /* or 144% */
     letter-spacing: -0.075em;
@@ -243,7 +244,7 @@ h2{
     font-family: 'Inter';
     font-style: italic;
     font-weight: 449;
-    font-size: 8px;
+    font-size: .6rem;
     line-height: 18px;
     /* or 144% */
 
@@ -252,4 +253,160 @@ h2{
     color: #9084B8;
     font-variation-settings: 'slnt' -10;
 
+}
+
+.my-profile-container{
+    width: 85vw;
+}
+
+.profile-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile-edit-link{
+    margin-left: auto;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 24px;
+    /* identical to box height, or 120% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.01em;
+    text-decoration-line: underline;
+
+    color: #5831DD;
+}
+
+.my-profile{
+    background: rgba(255, 255, 255, 0.1);
+    border: 5px solid rgba(40, 17, 120, 0.4);
+    box-shadow: 0px 12px 36px rgba(47, 43, 67, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 43.6667px;
+    
+    height: 250px;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.profile-picture{
+    height: 15.625rem;
+    width: 20rem;
+    object-fit: cover;
+}
+
+
+.profile-info-container{
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 0 1rem;
+}
+
+.profile-info-name{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 645;
+    font-size: 1.875rem;
+    line-height: 32px;
+    /* identical to box height, or 97% */
+    
+    letter-spacing: -0.075em;
+    text-transform: capitalize;
+    
+    color: #170065;
+    font-variation-settings: 'slnt' 0;   
+    
+    padding-bottom: 10px;
+}
+
+.profile-info-bio{
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 449;
+    font-size: 1.25rem;
+    line-height: 32px;
+    letter-spacing: -0.075em;
+    text-transform: capitalize;
+
+    color: #9084B8;
+    font-variation-settings: 'slnt' -10;
+}
+
+.nav-left-container{
+    margin-right: auto;
+    height: 2.5rem;
+    width: 20vw;
+}
+
+.nav-left-container > img{
+    height: 2.5rem;
+}
+
+.nav-right-container{
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 20vw;
+}
+
+.notifications-icon-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    margin-right: .8rem;
+
+}
+
+.notifications-icon{
+    height: 2.5rem;
+    position: relative;
+}
+
+.nav-profile-icon{
+    filter: drop-shadow(0px 12px 36px rgba(47, 43, 67, 0.12));
+    border-radius: 500px;
+    border: 0.3rem solid #ffffff;
+    height: 4rem;
+    aspect-ratio: 1;
+    object-fit: cover;
+
+}
+
+.pending::before{
+    position: absolute;
+    content: " ";
+    z-index: 100    ;
+    background-color: red;
+    border-radius: 500px;
+    width: 0.8rem;
+    height: 0.8rem;
+    top: -0.2rem;
+    right: -0.2rem;
+}
+
+#notifications-container{
+    position: absolute;
+    display: block;
+    right: 1rem;
+    top: 1rem;
+    width: 10rem;
+    background-color: #170065;
+}
+
+.dnone{
+    display: none !important;
 }
