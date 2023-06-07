@@ -10,6 +10,7 @@ html, body {
     height: 100%;
     max-width: 100%;
     overflow-x: hidden;
+    user-select: none;
 }
 
 #background{
@@ -29,7 +30,7 @@ nav{
     letter-spacing: 0.01em;
     align-items: center;
     height: 20vh;
-    padding: 2rem;
+    padding: 3rem;
     padding-bottom: 0;
     display: flex;
     flex-direction: column;
@@ -43,14 +44,15 @@ nav{
     font-family: 'Cormorant Garamond';
     font-style: normal;
     font-weight: 700;
-    font-size: 45px;
-    line-height: 35px;
+    font-size: 2.8125rem;
+    line-height: 2.1875rem;
     letter-spacing: -0.03em;
     color: #5831DD;
 }
 
 #main-container{
-    padding: 2rem;
+    padding: 0 2rem;
+    padding-top: 1rem;
     height: calc(100vh - 6rem);
     display: flex;
     flex-direction: column;
@@ -65,9 +67,8 @@ h1{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 45px;
-    line-height: 35px;
-    /* identical to box height, or 78% */
+    font-size: 2.8125rem;
+    line-height: 2.1875rem;
     letter-spacing: -0.03em;
     color: rgba(54, 21, 168, 0.7);
 }
@@ -76,8 +77,8 @@ h2{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 30px;
-    line-height: 35px;
+    font-size: 1.875rem;
+    line-height: 2.1875rem;
 
     text-align: center;
     letter-spacing: -0.055em;
@@ -92,8 +93,8 @@ p{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 1rem;
+    line-height: 1.5rem;
     letter-spacing: -0.01em;
     /* color: rgba(0, 0, 0, 0.7); */
 }
@@ -102,8 +103,8 @@ a{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
     letter-spacing: -0.01em;
     text-decoration-line: underline;
     color: #92909D;
@@ -113,18 +114,20 @@ a{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    width: 900px;
-    height: 550px;
+    width: 56.25rem;
+    height: 50vh;
+    min-width: 50vw;
     justify-items: center;
     align-items: center;
 }
 
 .interest{
-    width: 150px;
-    height: 150px;
+    height: 13vh;
+    min-height: 7rem;
+    aspect-ratio: 1;
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgba(255, 255, 255, 0.2);
     box-shadow: 0px 11.0562px 33.1685px rgba(47, 43, 67, 0.12);
-    border-radius: 46.0674px;
+    border-radius: 5vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -159,11 +162,11 @@ button{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
-    line-height: 18px;
+    font-size: 1.25rem;
+    line-height: 1.125rem;
 
     text-align: center;
-    letter-spacing: -0.055em;
+    letter-spacing: -0.08em;
 
 }
 
@@ -171,14 +174,15 @@ button{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 25px;
-    line-height: 34px;
+    font-size: 1.5625rem;
+    line-height: 2.125rem;
     letter-spacing: -0.055em;
     color: rgba(255, 255, 255, 0.95);
     background: #674CBF;
     border-radius: 100px;
-    padding: 10px 45px;
+    padding: .625rem 2.8125rem;
     transition: all 200ms ease-in;
+    margin: 1rem;
 }
 
 .button:hover{
