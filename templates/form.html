@@ -17,7 +17,7 @@
     <div class="form-container" id="form-container1">
         <div class="head">
             <h1>Registration</h1>
-            <h2>Personal Details</h2>
+            <h2 id>Personal Details</h2>
         </div>
         <div class="registration-form">
             <div class="text-input">
@@ -46,7 +46,7 @@
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/pin_icon.svg') }}" alt="">
-                <input type="number" class="input" placeholder="Pin Code" name="input" required minlength="6">
+                <input type="number" class="input" placeholder="Pin Code" name="input" required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/city_icon.svg') }}" alt="">
@@ -89,7 +89,31 @@
                 <input type="checkbox" name="checkbox" id="checkbox">
                 <label for="checkbox" id="text-label">I Agree to All the <a href="">Terms and Conditions</a></label>
             </div>
-            <input type="submit" id="submit2" class="" value="Next">
+            <input type="button" id="submit2" class="submit" value="Finish">
+        </div>
+    </div>
+    <div class="form-container display" id="form-container3">
+        <h1>I'm Looking to</h1>
+        <div action="" class="choice-form">
+            <input type="checkbox" name="input" class="date">
+            <input type="checkbox" name="input" class="marry">
+            <input type="checkbox" name="input" class="not-sure">
+            <div class="choice-container">
+                <div class="date choice" onclick="func(date)">
+                    <h2>Date</h2>
+                    <img src="{{ url_for('static', filename='images/choices/date.png') }}" alt="">
+                </div>
+                <div class="marry choice" onclick="func(marry)">
+                    <h2>Marry</h2>
+                    <img src="{{ url_for('static', filename='images/choices/marry.png') }}" alt="">
+                </div>
+                <div class="not-sure choice" onclick="func(notsure)">
+                    <h2>I'm not sure</h2>   
+                    <img src="{{ url_for('static', filename='images/choices/not_sure.png') }}" alt=""> 
+                </div>
+            </div>
+            <p>(You can always change this later on)</p>
+            <input type="button" id="submit3" class="" value="Next">
         </div>
     </div>
 </form>
@@ -101,12 +125,22 @@
     for (i=0;i<l;i++){
         x[i].onclick = ((num, form) => {
             return () => {
-                if(form.checkValidity()){
+                if(!form.checkValidity()){
                     document.getElementsByClassName('form-container')[num].classList.add('current')
                     document.getElementsByClassName('form-container')[num+1].classList.remove('display')
                 }
             }
         })(i, form)
+    }
+    c = document.getElementsByClassName('choice')
+    for (i in c){
+        c[i].onclick = ((elem) => {
+            return () => {
+                check = document.getElementsByClassName(elem.classList[0])[0]
+                check.checked = !check.checked
+                elem.classList.toggle('checked')
+            }
+        })(c[i])
     }
 </script>
 {% endblock %}
