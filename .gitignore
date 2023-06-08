@@ -2,3 +2,4 @@ venv/
 flask_session/
 .replit
 replit.nix
+.env

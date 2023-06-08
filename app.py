@@ -1,7 +1,19 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+import mysql.connector
 
+load_dotenv()
+
+db = mysql.connector.connect(
+        host=os.getenv("HOST"),
+        database=os.getenv("DATABASE"),
+        user=os.getenv("DBUSERNAME"),
+        password=os.getenv("PASSWORD"),
+        ssl_ca=os.getenv("SSL_CERT")
+    )
 
 app = Flask(__name__)
 app.config['SESSION_PERMANENT'] = False
