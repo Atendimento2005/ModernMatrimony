@@ -72,7 +72,7 @@ nav{
     transform: translateY(100vh);
 }
 
-#form-container1, #form-container2{
+#form-container1, #form-container2, .interest{
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgba(255, 255, 255, 0.2);
     box-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12);
     border-radius: 50px;
@@ -88,13 +88,33 @@ nav{
                 opacity 0.75s ease-in-out;
 }
 
+.interest{
+    border-radius: 5vh;
+    height: 15vh;
+    aspect-ratio: 1;
+    min-height: 7rem;
+    justify-content: center;
+    padding: 0;
+    color: rgba(125, 7, 100, 0.7);
+    position: static;
+    transition: transform 200ms ease-in,
+                color 200ms ease-in,
+                background-color 200ms ease-in;
+}
+
 #form-container3{
     width: 100%;
-    height: 100%;
+    height: calc(80vh);
+    padding: 3rem;    
+    padding-top: 0;
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
+    position: absolute;
+    top: 20vh;
+    transition: transform 0.5s ease-in-out,
+                opacity 0.75s ease-in-out;
 }
 
 h1{
@@ -108,6 +128,11 @@ h1{
     color: rgba(54, 21, 168, 0.7);
 }
 
+#form-container4 > h1{
+    font-size: 2.8125rem;
+    line-height: 2.1875rem;
+}
+
 #form-container3 > h1 {
     font-size: 40px;
     letter-spacing: -0.055em;
@@ -115,7 +140,7 @@ h1{
     text-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12)
 }
 
-.head > h2{
+.head > h2, #form-container4 > h2{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
@@ -126,6 +151,92 @@ h1{
     letter-spacing: -0.03em;
     padding-top: 6px;
     color: #C4B2FF;
+}
+
+#form-container4 {
+    position: absolute;
+    top: 20vh;
+    padding: 0 2rem;
+    padding-top: 1rem;
+    height: calc(100vh - 6rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: fit-content;
+    text-align: center;
+    justify-content: center;
+    transition: transform 0.5s ease-in-out,
+                opacity 0.75s ease-in-out;
+}
+
+#form-container4 > h2{
+    font-size: 1.875rem;
+    line-height: 2.1875rem;
+    letter-spacing: -0.055em;
+    color: #C4B3FF;
+    text-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12);
+    padding-top: 5px;
+}
+
+.interest-text{
+    display:inline;
+    font-family: 'Inter';
+    font-style: normal;
+    width: 85%;
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1.125rem;
+    text-align: center;
+    margin-top: 10px;
+    letter-spacing: -0.08em;
+    /* color: rgba(0, 0, 0, 0.7); */
+}
+
+#interests-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 56.25rem;
+    height: 55vh;
+    min-width: 50vw;
+    justify-items: center;
+    align-items: center;
+}
+
+.interest-image{
+    object-fit: cover;
+    width: 50%;
+
+}
+
+button{
+    border: none;
+}
+
+.interest-checkbox{
+    display: none;
+}
+
+.button{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.5625rem;
+    line-height: 2.125rem;
+    letter-spacing: -0.055em;
+    color: rgba(255, 255, 255, 0.95);
+    background: #674CBF;
+    border-radius: 100px;
+    padding: .625rem 2.8125rem;
+    transition: all 200ms ease-in;
+    margin: 1rem;
+}
+
+.button:hover{
+    transform: scale(1.01);
+    color: #674CBF;
+    background-color: #FFFFFF;
 }
 
 .choice-form{
@@ -182,8 +293,8 @@ h1{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    font-size: 30px;
-    line-height: 27px;
+    font-size: 34.9333px;
+    line-height: 31px;
     letter-spacing: -0.03em;
 }
 

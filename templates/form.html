@@ -75,7 +75,8 @@
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/cake_icon.svg') }}" alt="">
-                <input type="text" name="input" class="input" placeholder="Date of Birth" onfocus="this.type='date'" onblur="this.type='text'">
+                <input type="text" name="input" class="input" placeholder="Date of Birth" onfocus="this.type='date'"
+                    onblur="this.type='text'">
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/religion_icon.svg') }}" alt="">
@@ -108,32 +109,89 @@
                     <img src="{{ url_for('static', filename='images/choices/marry.png') }}" alt="">
                 </div>
                 <div class="not-sure choice" onclick="func(notsure)">
-                    <h2>I'm not sure</h2>   
-                    <img src="{{ url_for('static', filename='images/choices/not_sure.png') }}" alt=""> 
+                    <h2>I'm not sure</h2>
+                    <img src="{{ url_for('static', filename='images/choices/not_sure.png') }}" alt="">
                 </div>
             </div>
             <p>(You can always change this later on)</p>
-            <input type="button" id="submit3" class="" value="Next">
+            <input type="button" id="submit3" class="submit" value="Next">
         </div>
+    </div>
+    <div class="form-container display" id="form-container4">
+        <h1>Select your Interests to find Like-minded Matches</h1>
+        <h2>(minimum 5)</h2>
+        <div action="/test" method="post" id="myform"></div>
+        <div id="interests-container">
+        </div>
+        <div id="start-button" class="button">Finish</div>
     </div>
 </form>
 
 <script>
+    const interests = ["reading", "painting", "photography", "cooking", "travelling", "sports", "workout", "lmusic", "pmusic", "dancing", "art", "movies", "gardening", "science", "social"]
+    const interestText = {
+        "reading": "Reading",
+        "painting": "Painting",
+        "photography": "Photography",
+        "cooking": "Cooking",
+        "travelling": "Travelling",
+        "sports": "Sports",
+        "workout": "Working out",
+        "lmusic": "Listening to music",
+        "pmusic": "Playing music",
+        "dancing": "Dancing",
+        "art": "Art",
+        "movies": "Movies",
+        "gardening": "Gardening",
+        "science": "Science",
+        "social": "Social Causes",
+    }
     var x = document.getElementsByClassName('submit');
     var form = document.getElementById('main-container');
     var l = x.length;
-    for (i=0;i<l;i++){
+    for (i = 0; i < l; i++) {
         x[i].onclick = ((num, form) => {
             return () => {
-                if(!form.checkValidity()){
+                if (!form.checkValidity()) {
                     document.getElementsByClassName('form-container')[num].classList.add('current')
-                    document.getElementsByClassName('form-container')[num+1].classList.remove('display')
+                    if (num == 2) {
+                        container = document.getElementById("interests-container")
+                        for (i in interests) {
+                            form = document.getElementById('myform')
+                            checkbox = document.createElement('input')
+                            checkbox.type = 'checkbox'
+                            checkbox.classList.add("interest-checkbox")
+                            checkbox.classList.add(interests[i])
+                            checkbox.value = interests[i]
+                            form.appendChild(checkbox)
+                            interestNode = document.createElement('div')
+                            interestNode.id = interests[i]
+                            interestNode.classList.add("interest")
+                            image = document.createElement("img")
+                            image.src = `/static/images/interests/${interests[i]}.png`
+                            image.classList.add("interest-image")
+                            interestNode.appendChild(image)
+                            text = document.createElement('p')
+                            text.appendChild(document.createTextNode(interestText[interests[i]]))
+                            text.classList.add('interest-text')
+                            interestNode.appendChild(text)
+                            interestNode.onclick = (function (id) {
+                                return function () {
+                                    check = document.getElementsByClassName(id)[0]
+                                    check.checked = !check.checked
+                                    document.getElementById(id).classList.toggle('checked')
+                                }
+                            })(interests[i])
+                            container.appendChild(interestNode)
+                        }
+                    }
+                    document.getElementsByClassName('form-container')[num + 1].classList.remove('display')
                 }
             }
         })(i, form)
     }
     c = document.getElementsByClassName('choice')
-    for (i in c){
+    for (i in c) {
         c[i].onclick = ((elem) => {
             return () => {
                 check = document.getElementsByClassName(elem.classList[0])[0]
