@@ -10,10 +10,12 @@ load_dotenv()
 db = mysql.connector.connect(
         host=os.getenv("HOST"),
         database=os.getenv("DATABASE"),
-        user=os.getenv("DBUSERNAME"),
+        user=os.getenv("USERNAME"),
         password=os.getenv("PASSWORD"),
         ssl_ca=os.getenv("SSL_CERT")
     )
+
+cur = db.cursor()
 
 app = Flask(__name__)
 app.config['SESSION_PERMANENT'] = False
@@ -25,6 +27,12 @@ app.app_context().push()
 @app.route('/')
 def index():
     return render_template('landing.html')
+
+@app.route('/dbtest')
+def dbtest():
+    cur.execute("SELECT * FROM Users")
+    testData = cur.fetchall()
+    return testData
 
 @app.route('/login')
 def login():
