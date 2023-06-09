@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash
 from flask_session import Session
 from datetime import datetime, date
 import os
@@ -34,8 +34,21 @@ def dbtest():
     testData = cur.fetchall()
     return testData
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        cur.execute(f"SELECT (id) FROM Users WHERE email = '{request.form.get('email')}' AND password = '{request.form.get('password')}'")
+        account_id = cur.fetchone()
+        if account_id:
+            session['id'] = account_id[0]
+            return redirect('/home')
+        
+        flash('Invalid Credentails', 'error')
+        return redirect('/login')
+    
+    if session.get('id'):
+        return redirect('/home')
+    
     return render_template('login.html')
 
 @app.route('/registration')
@@ -56,14 +69,18 @@ def interests():
 
 @app.route('/home')
 def home():
-    return render_template('homepage.html')
+    if session.get('id'):
+        cur.execute(f"SELECT name, age, bio FROM Users WHERE id = {int(session.get('id'))}")
+        user_data = cur.fetchone()
+        return render_template('homepage.html', name = user_data[0], age = user_data[1], bio = user_data[2])
+    return redirect('/login')
 
 @app.route('/form', methods = ['GET', 'POST'])
 def form():
     if request.method == 'POST':
         formData = request.form
         data = (
-            formData.get('f_name').strip() + formData.get('l_name').strip(),
+            formData.get('f_name').strip() + ' ' + formData.get('l_name').strip(),
             (date.today() - date.fromisoformat(formData.get('dob'))).days//365,
             formData.get('gender').strip()[0].upper(),
             formData.get('religion').strip(),
@@ -77,7 +94,8 @@ def form():
             formData.get('email').strip(),
             formData.get('ph').strip(),
             formData.get('occupation').strip(),
-            formData.get('alma').strip()
+            formData.get('alma').strip(),
+            formData.get('password').strip()
         )
         cur.execute(f'''INSERT INTO Users(
                     name, 
@@ -94,7 +112,8 @@ def form():
                     email, 
                     ph, 
                     occupation, 
-                    alma
+                    alma,
+                    password
         )
         VALUES {data};''')
         db.commit()

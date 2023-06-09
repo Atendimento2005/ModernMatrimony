@@ -1,0 +1,23 @@
+.error{
+    background: #FA3838;
+    border: 7px solid #FFFFFF;
+    box-shadow: 2px 4px 9px rgba(0, 0, 0, 0.25);
+    border-radius: 32px;
+}
+
+.flashes{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.flashes > li {
+    list-style: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25.0833px;
+    line-height: 43px;
+    color: #FFFFFF;
+    padding: 1rem;
+}
