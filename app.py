@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
-from datetime import datetime
+from datetime import datetime, date
 import os
 from dotenv import load_dotenv
 import mysql.connector
@@ -58,8 +58,48 @@ def interests():
 def home():
     return render_template('homepage.html')
 
-@app.route('/form')
+@app.route('/form', methods = ['GET', 'POST'])
 def form():
+    if request.method == 'POST':
+        formData = request.form
+        data = (
+            formData.get('f_name').strip() + formData.get('l_name').strip(),
+            (date.today() - date.fromisoformat(formData.get('dob'))).days//365,
+            formData.get('gender').strip()[0].upper(),
+            formData.get('religion').strip(),
+            formData.get('caste').strip(),
+            formData.get('education').strip(),
+            formData.get('city').strip(),
+            1 if formData.get('date') == 'on' or formData.get('not-sure') else 0,
+            1 if formData.get('marry') == 'on' or formData.get('not-sure') else 0,
+            formData.get('interests'),
+            'bio bio biobiobiobiobiobiobiobiobiobiobiobiobiobiobiobiobiobiobiobiobio',
+            formData.get('email').strip(),
+            formData.get('ph').strip(),
+            formData.get('occupation').strip(),
+            formData.get('alma').strip()
+        )
+        cur.execute(f'''INSERT INTO Users(
+                    name, 
+                    age, 
+                    sex, 
+                    religion, 
+                    caste, 
+                    education, 
+                    city, 
+                    dating, 
+                    marriage, 
+                    interests, 
+                    bio, 
+                    email, 
+                    ph, 
+                    occupation, 
+                    alma
+        )
+        VALUES {data};''')
+        db.commit()
+        return 'updated DB!'
+    
     return render_template('form.html')
 
 if __name__ == '__main__':

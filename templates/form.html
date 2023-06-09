@@ -13,7 +13,7 @@
         <div class="logo-text">Modern<br>Matrimony</div>
     </div>
 </nav>
-<form action="" id="main-container">
+<form action="/form" method="POST" id="main-container">
     <div class="form-container" id="form-container1">
         <div class="head">
             <h1>Registration</h1>
@@ -22,35 +22,35 @@
         <div class="registration-form">
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/person_icon.svg') }}" alt="">
-                <input type="text" class="input" placeholder="First Name" name="input" required>
+                <input type="text" class="input" placeholder="First Name" name="f_name" required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/person_icon.svg') }}" alt="">
-                <input type="text" class="input" placeholder="Last Name" name="input" required>
+                <input type="text" class="input" placeholder="Last Name" name="l_name" required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/person_icon.svg') }}" alt="">
-                <input type="number" class="input" placeholder="Phone Number" name="input" required>
+                <input type="number" class="input" placeholder="Phone Number" name="ph" required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/at_icon.svg') }}" alt="">
-                <input type="email" class="input" placeholder="Email I.D." name="input" required>
+                <input type="email" class="input" placeholder="Email I.D." name="email" required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/key_icon.svg') }}" alt="">
-                <input type="password" class="input" placeholder="Password" name="input" required>
+                <input type="password" class="input" placeholder="Password" name="password" required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/gender_icon.svg') }}" alt="">
-                <input type="text" class="input" placeholder="Gender" name="input" required>
+                <input type="text" class="input" placeholder="Gender" name="gender" required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/pin_icon.svg') }}" alt="">
-                <input type="number" class="input" placeholder="Pin Code" name="input" required>
+                <input type="number" class="input" placeholder="Pin Code" name="pincode" required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/city_icon.svg') }}" alt="">
-                <input type="text" class="input" placeholder="City" name="input" required>
+                <input type="text" class="input" placeholder="City" name="city" required>
             </div>
             <input id="submit1" class="submit" type="button" value="Next">
         </div>
@@ -63,31 +63,31 @@
         <div class="registration-form">
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/board_icon.svg') }}" alt="">
-                <input type="text" name="input" class="input" placeholder="Highest Education Level">
+                <input type="text" name="education" class="input" placeholder="Highest Education Level">
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/briefcase_icon.svg') }}" alt="">
-                <input type="text" name="input" class="input" placeholder="Occupation">
+                <input type="text" name="occupation" class="input" placeholder="Occupation">
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/school_icon.svg') }}" alt="">
-                <input type="text" name="input" class="input" placeholder="Alma Matter">
+                <input type="text" name="alma" class="input" placeholder="Alma Matter">
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/cake_icon.svg') }}" alt="">
-                <input type="text" name="input" class="input" placeholder="Date of Birth" onfocus="this.type='date'"
+                <input type="text" name="dob" class="input" placeholder="Date of Birth" onfocus="this.type='date'"
                     onblur="this.type='text'">
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/religion_icon.svg') }}" alt="">
-                <input type="text" name="input" class="input" placeholder="Religion">
+                <input type="text" name="religion" class="input" placeholder="Religion">
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/caste_icon.svg') }}" alt="">
-                <input type="text" name="input" class="input" placeholder="Caste">
+                <input type="text" name="caste" class="input" placeholder="Caste">
             </div>
             <div class="check-input">
-                <input type="checkbox" name="checkbox" id="checkbox">
+                <input type="checkbox" name="terms" id="checkbox">
                 <label for="checkbox" id="text-label">I Agree to All the <a href="">Terms and Conditions</a></label>
             </div>
             <input type="button" id="submit2" class="submit" value="Finish">
@@ -96,9 +96,9 @@
     <div class="form-container display" id="form-container3">
         <h1>I'm Looking to</h1>
         <div action="" class="choice-form">
-            <input type="checkbox" name="input" class="date">
-            <input type="checkbox" name="input" class="marry">
-            <input type="checkbox" name="input" class="not-sure">
+            <input type="checkbox" name="date" class="date">
+            <input type="checkbox" name="marry" class="marry">
+            <input type="checkbox" name="not-sure" class="not-sure">
             <div class="choice-container">
                 <div class="date choice" onclick="func(date)">
                     <h2>Date</h2>
@@ -118,12 +118,13 @@
         </div>
     </div>
     <div class="form-container display" id="form-container4">
+        <input type="text" name="interests" id="interests-input" value="000000000000000" required>
         <h1>Select your Interests to find Like-minded Matches</h1>
         <h2>(minimum 5)</h2>
         <div action="/test" method="post" id="myform"></div>
         <div id="interests-container">
         </div>
-        <div id="start-button" class="button">Finish</div>
+        <button id="start-button" class="button">Finish</button>
     </div>
 </form>
 
@@ -158,32 +159,28 @@
                         container = document.getElementById("interests-container")
                         for (i in interests) {
                             form = document.getElementById('myform')
-                            checkbox = document.createElement('input')
-                            checkbox.type = 'checkbox'
-                            checkbox.classList.add("interest-checkbox")
-                            checkbox.classList.add(interests[i])
-                            checkbox.value = interests[i]
-                            form.appendChild(checkbox)
+                            interestsInput = document.getElementById('interests-input')
                             interestNode = document.createElement('div')
                             interestNode.id = interests[i]
                             interestNode.classList.add("interest")
-                            image = document.createElement("img")
-                            image.src = `/static/images/interests/${interests[i]}.png`
-                            image.classList.add("interest-image")
-                            interestNode.appendChild(image)
-                            text = document.createElement('p')
-                            text.appendChild(document.createTextNode(interestText[interests[i]]))
-                            text.classList.add('interest-text')
-                            interestNode.appendChild(text)
-                            interestNode.onclick = (function (id) {
+                            interestNode.innerHTML = `
+                                <img src="/static/images/interests/${interests[i]}.png" class="interest-image" alt="">
+                                <p class="interest-text">${interestText[interests[i]]}</p>
+                            `
+                            interestNode.onclick = (function (id, index) {
                                 return function () {
-                                    check = document.getElementsByClassName(id)[0]
-                                    check.checked = !check.checked
+                                    var interestData = document.getElementById('interests-input')
+                                    if (interestData.value[index] == '0') {
+                                        interestData.value = interestData.value.substring(0, index)+'1'+interestData.value.substring(Number(index)+1)
+                                    } else {
+                                        interestData.value = interestData.value.substring(0, index)+'0'+interestData.value.substring(Number(index)+1)
+                                    }
                                     document.getElementById(id).classList.toggle('checked')
+                                    console.log(interestData.value)
                                 }
-                            })(interests[i])
+                            })(interests[i], i)
                             container.appendChild(interestNode)
-                        }
+                        }   
                     }
                     document.getElementsByClassName('form-container')[num + 1].classList.remove('display')
                 }
