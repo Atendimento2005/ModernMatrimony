@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, redirect, session, flash
 from flask_session import Session
-from datetime import datetime, date
+from datetime import datetime, date,  timedelta
 import os
 from dotenv import load_dotenv
 import mysql.connector
+import helpers
 
 load_dotenv()
 
@@ -18,8 +19,9 @@ db = mysql.connector.connect(
 cur = db.cursor()
 
 app = Flask(__name__)
-app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_PERMANENT'] = True
 app.config['SESSION_TYPE'] = "filesystem"
+app.permanent_session_lifetime = timedelta(minutes=43200)
 Session(app)
 app.app_context().push()
 
@@ -40,6 +42,8 @@ def login():
         cur.execute(f"SELECT (id) FROM Users WHERE email = '{request.form.get('email')}' AND password = '{request.form.get('password')}'")
         account_id = cur.fetchone()
         if account_id:
+            if not request.form.get('remember'):
+                session.permanent = False
             session['id'] = account_id[0]
             return redirect('/home')
         
@@ -70,9 +74,24 @@ def interests():
 @app.route('/home')
 def home():
     if session.get('id'):
-        cur.execute(f"SELECT name, age, bio FROM Users WHERE id = {int(session.get('id'))}")
-        user_data = cur.fetchone()
-        return render_template('homepage.html', name = user_data[0], age = user_data[1], bio = user_data[2])
+        if not (session.get('name') and session.get('age') and session.get('bio') and session.get('interests')):
+            user_data = helpers.fetchUserByID(db, int(session.get('id')), ('name', 'age', 'bio', 'interests'))
+            session['name'] = user_data['name']
+            session['age'] = user_data['age']
+            session['bio'] = user_data['bio']
+            session['interests'] = user_data['interests']
+            
+        relation_data = helpers.fetchReccomendations(db, int(session.get('id')))
+
+        return render_template('homepage.html', 
+                               id = session.get('id'),  
+                               name = session.get('name'), 
+                               age = session.get('age'), 
+                               bio = session.get('bio'), 
+                               interests=session.get('interests'), 
+                               relation_data = relation_data
+                               )
+    
     return redirect('/login')
 
 @app.route('/form', methods = ['GET', 'POST'])
@@ -113,8 +132,7 @@ def form():
                     ph, 
                     occupation, 
                     alma,
-                    password
-        )
+                    password)
         VALUES {data};''')
         db.commit()
         return 'updated DB!'

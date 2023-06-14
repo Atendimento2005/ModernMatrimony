@@ -6,21 +6,24 @@
 {% endblock %}
 
 {% block body %}
+
+{% set interestText = ["Reading", "Painting", "Photography", "Cooking", "Travelling", "Sports", "Working out", "Listening to music", "Playing music", "Dancing", "Art", "Movies", "Gardening", "Science", "Social Causes"] %}
+
 <div id="background"></div>
-<img id="bgimage" src="{{ url_for('static', filename='images/bgimage.png')}}" alt="">
+<img draggable="false" id="bgimage" src="{{ url_for('static', filename='images/bgimage.png')}}" alt="">
 
 <nav>
     <div class="nav-left-container">
-        <img src="/static/images/icons/temp.svg" alt="temp">
+        <img draggable="false" src="/static/images/icons/temp.svg" alt="temp">
         <!-- TEMP IMG -->
     </div>
     <div id="logo">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+        <img draggable="false" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
         <div class="logo-text">Modern<br>Matrimony</div>
     </div>
     <div class="nav-right-container">
         <div class="notifications-icon-container pending">
-            <img class="notifications-icon" src="/static/images/icons/notifications.svg" alt="notifications" onclick="toggleNotifications()">
+            <img draggable="false" class="notifications-icon" src="/static/images/icons/notifications.svg" alt="notifications" onclick="toggleNotifications()">
             <div id="notifications-container" class="dnone">
                 <div class="notification">Arim Kaji</div>
                 <div class="notification">Boddo</div>
@@ -28,12 +31,12 @@
             </div>
         </div>
         <a href="/">
-            <img src="/static/images/profiles/rahul.jpg" alt="profile-picture" class="nav-profile-icon">
+            <img draggable="false" src="/static/images/profiles/{{id}}.webp" alt="profile-picture" class="nav-profile-icon">
         </a>
     </div>
 </nav>
 
-<div id="main-container">
+<div draggable="false" id="main-container">
     <div class="greeting">
         <h1>Welcome, {{name}}</h1>
         <h2>Your perfect match awaits!</h2>
@@ -41,13 +44,49 @@
     <div class="suggestion-container">
         <p class="suggestion-heading">Our Picks:</p>
         <div class="suggestion-card-container" id="ourpicks">
-           
+            {% for user in relation_data%}
+            <div class="suggestion-card">
+                <img draggable="false" class = "suggestion-img"src="/static/images/profiles/{{user['id']}}.webp" alt="profile-picture">
+                <div class="suggestion-info">
+                    <p class="suggestion-name">{{user['name']}}, {{user['age']}}</p>
+                    <p class="suggestion-bio">{{user['bio']}}</p>
+                </div>
+                <div class="suggestion-tags-container">
+                    {% for i in range(user['interests']|length) %}
+                        {% if user['interests'][i] == '1' %}
+                            <div class="tag">
+                                <img draggable="false" src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
+                                <p class="suggestion-tag-text">{{interestText[i]}}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
         </div>
     </div>
     <div class="suggestion-container">
         <p class="suggestion-heading">Near You  :</p>
         <div class="suggestion-card-container" id="nearyou">
-                        
+            {% for user in relation_data%}
+                <div class="suggestion-card">
+                    <img draggable="false" class = "suggestion-img"src="/static/images/profiles/{{user['id']}}.webp" alt="profile-picture">
+                    <div class="suggestion-info">
+                        <p class="suggestion-name">{{user['name']}}, {{user['age']}}</p>
+                        <p class="suggestion-bio">{{user['bio']}}</p>
+                    </div>
+                    <div class="suggestion-tags-container">
+                        {% for i in range(user['interests']|length) %}
+                            {% if user['interests'][i] == '1' %}
+                                <div class="tag">
+                                    <img draggable="false" src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
+                                    <p class="suggestion-tag-text">{{interestText[i]}}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
         </div>
     </div>
     <div class="my-profile-container">
@@ -56,9 +95,19 @@
             <a href="/test" class="profile-edit-link">Edit</a>
         </div>
         <div class="my-profile">
-            <img class = 'profile-picture' src="/static/images/profiles/rahul.jpg" alt="profile picture">
+            <img draggable="false" class = 'profile-picture' src="/static/images/profiles/{{id}}.webp" alt="profile picture">
             <div class="profile-info-container">
                 <p class="profile-info-name">{{name}}, {{age}}</p>
+                <div class="profile-tags-container">
+                    {% for i in range(interests|length) %}
+                        {% if interests[i] == '1' %}
+                            <div class="tag">
+                                <img draggable="false" src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
+                                <p class="profile-tag-text">{{interestText[i]}}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
                 <p class="profile-info-bio">{{bio}}</p>
             </div>
         </div>
@@ -68,48 +117,16 @@
 <footer>
     <p class="footer-text">Made with love, to find love.<br>The students of 12J</p>
     <div class = 'footer-logo'>
-        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+        <img draggable="false" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
         <div class="logo-text">Modern<br>Matrimony</div>
     </div>
 </footer>
 
 <script>
-    profiles = [{id: 'rahul', name: 'Rahul', age: 30, bio: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto, nobis!", hobbies: ["Photography", "Gardening", "Cooking"]}]
-    window.onload = () => {
-        suggestionsContainer = document.getElementById("ourpicks")
-        for (i=0; i < 6; i++) {
-            profile = profiles[0]
-            card = document.createElement('div');
-            card.classList.add("suggestion-card");
-            card.innerHTML = 
-            `
-            <img class = "suggestion-img"src="/static/images/profiles/${profile.id}.jpg" alt="profile-picture">
-            <div class="suggestion-info">
-                <p class="suggestion-name">${profile.name}, ${profile.age}</p>
-                <p class="suggestion-bio">${profile.bio}</p>
-            </div>
-            <div class="suggestion-tags-container">
-                <div class="tag">
-                    <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                    <p class="suggestion-tag-text">Photography</p>
-                </div>
-                <div class="tag">
-                    <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                    <p class="suggestion-tag-text">Cooking</p>
-                </div>
-                <div class="tag">
-                    <img src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                    <p class="suggestion-tag-text">Gardening</p>
-                </div>
-            </div>
-            `
-            suggestionsContainer.appendChild(card)
-        };
-    };
-
     function toggleNotifications(){
         notifications = document.getElementById('notifications-container')
         notifications.classList.toggle("dnone")
     }
 </script>
+<script src="/static/scripts/scroll.js"></script>
 {% endblock %}

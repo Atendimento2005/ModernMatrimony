@@ -10,8 +10,8 @@ html, body {
     height: 100%;
     max-width: 100%;
     overflow-x: hidden;
+    user-select: none;
 }
-
 
 #background{
     background: linear-gradient(307.05deg, #D2CDFF 35.26%, #FFFFFF 100.99%);
@@ -125,16 +125,23 @@ h2{
 }
 .suggestion-card-container{
     height: 18.75rem;
-    width: 100%;
+    width: 80vw;
+    overflow-x: scroll;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.suggestion-card-container::-webkit-scrollbar {
+    display: none;
 }
 
 .suggestion-card{
-    width: 10rem;
-    max-width: 11vw;
+    min-width: 13em;
+    max-width: 14rem;
+    margin: 0 1rem;
     height: 100%;
     background: rgba(255, 255, 255, 0.5);
     border: 2.80154px solid rgba(40, 17, 120, 0.4);
@@ -181,7 +188,7 @@ h2{
     font-family: 'Inter';
     font-style: italic;
     font-weight: 449;
-    font-size: 1rem;
+    font-size: 0.85rem;
     line-height: 18px;
     letter-spacing: -0.075em;
     color: #9084B8;
@@ -310,6 +317,28 @@ h2{
     padding-bottom: 10px;
 }
 
+.profile-tags-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 0.5rem;
+    padding-bottom: 0.5rem;
+
+}
+
+.profile-tag-text{
+    padding: 0 0.2rem;
+    font-family: 'Inter';
+    font-style: italic;
+    font-weight: 449;
+    font-size: .9rem;
+    line-height: 18px;
+    letter-spacing: -0.075em;
+
+    color: #9084B8;
+    font-variation-settings: 'slnt' -10;
+}
+
 .profile-info-bio{
     font-family: 'Inter';
     font-style: italic;
@@ -317,7 +346,6 @@ h2{
     font-size: 1.25rem;
     line-height: 32px;
     letter-spacing: -0.075em;
-    text-transform: capitalize;
 
     color: #9084B8;
     font-variation-settings: 'slnt' -10;
