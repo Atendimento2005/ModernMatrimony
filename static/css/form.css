@@ -215,28 +215,9 @@ button{
 }
 
 #interests-input{
-    display: none;
-}
-
-.button{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 1.5625rem;
-    line-height: 2.125rem;
-    letter-spacing: -0.055em;
-    color: rgba(255, 255, 255, 0.95);
-    background: #674CBF;
-    border-radius: 100px;
-    padding: .625rem 2.8125rem;
-    transition: all 200ms ease-in;
-    margin: 1rem;
-}
-
-.button:hover{
-    transform: scale(1.01);
-    color: #674CBF;
-    background-color: #FFFFFF;
+    position: absolute;
+    top: 63.75vh;
+    visibility: hidden;
 }
 
 .choice-form{
@@ -257,7 +238,7 @@ button{
     height: 78%;
 }
 
-.choice-form > input[type=checkbox]{
+.choice-form > input[type=radio]{
     display: none;
 }
 
@@ -298,9 +279,11 @@ button{
     letter-spacing: -0.03em;
 }
 
-.choice-form > p{
+.choice-form > #dummy_text_input{
     display: flex;
-    align-items: center;
+    width: 30%;
+    align-self: center;
+    text-align: center;
     justify-content: center;
     font-family: 'Inter';
     font-style: normal;
@@ -309,6 +292,12 @@ button{
     line-height: 24px;
     letter-spacing: -0.01em;
     color: rgba(47, 43, 67, 0.6);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: default;
+    pointer-events: none;
+    caret-color: transparent;
 }
 
 .text-input{
@@ -370,7 +359,10 @@ input[type='date']{
 }
 
 .check-input > input{
-    display: none;
+    visibility: hidden;
+    aspect-ratio: 1;
+    height: 24px;
+    position: absolute;
 }
 
 .check-input > input:checked + #text-label::before{
@@ -424,7 +416,7 @@ a{
     text-decoration-line: underline;
 }
 
-.submit, #submit3{
+.submit{
     width: 40%;
     height: calc(5.5vh + 10px);
     background: #674CBF;
@@ -453,7 +445,7 @@ a{
     padding: 0 4rem;
 }
 
-.submit:hover , #submit3:hover{
+.submit:hover{
     transform: scale(1.01);
     color: #674CBF;
     background-color: #FFFFFF;
@@ -467,4 +459,28 @@ a{
     transform: scale(1.05);
     background-color: #674CBF;
     color: #fff;
+}
+
+.button{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.5625rem;
+    line-height: 2.125rem;
+    letter-spacing: -0.055em;
+    color: rgba(255, 255, 255, 0.95);
+    background: #674CBF;
+    border-radius: 100px;
+    padding: .625rem 2.8125rem;
+    transition: all 200ms ease-in;
+    margin: 1rem;
+    width: auto;
+    height: calc(5.5vh + 10px);
+    box-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12);
+}
+
+.button:hover{
+    transform: scale(1.01);
+    color: #674CBF;
+    background-color: #FFFFFF;
 }
