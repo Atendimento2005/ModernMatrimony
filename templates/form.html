@@ -14,7 +14,7 @@
     </div>
 </nav>
 <form action="/form" method="POST" id="main-container" autocomplete="off">
-    <div class="form-container" id="form-container1">
+    <div class="form-container display" id="form-container1">
         <div class="head">
             <h1>Registration</h1>
             <h2 id>Personal Details</h2>
@@ -55,7 +55,7 @@
             <input id="submit1" class="submit" type="button" value="Next">
         </div>
     </div>
-    <div class="form-container display" id="form-container2">
+    <div class="form-container" id="form-container2">
         <div class="head">
             <h1>Registration</h1>
             <h2>Other Details</h2>
@@ -63,15 +63,15 @@
         <div class="registration-form">
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/board_icon.svg') }}" alt="">
-                <input type="text" name="education" class="input input2" placeholder="Highest Education Level" required autofocus>
+                <input type="text" id="education" name="education" class="input input2" placeholder="Highest Education Level" required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/briefcase_icon.svg') }}" alt="">
-                <input type="text" name="occupation" class="input input2" placeholder="Occupation" required>
+                <input type="text" id="occupation" name="occupation" class="input input2" placeholder="Occupation" required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/school_icon.svg') }}" alt="">
-                <input type="text" name="alma" class="input input2" placeholder="Alma Matter" required>
+                <input type="text" id="alma" name="alma" class="input input2" placeholder="Alma Matter" required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/cake_icon.svg') }}" alt="">
@@ -79,11 +79,11 @@
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/religion_icon.svg') }}" alt="">
-                <input type="text" name="religion" class="input input2" placeholder="Religion" required>
+                <input type="text" id="religion" name="religion" class="input input2" placeholder="Religion" required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/caste_icon.svg') }}" alt="">
-                <input type="text" name="caste" class="input input2" placeholder="Caste" required>
+                <input type="text" id="caste" name="caste" class="input input2" placeholder="Caste" required>
             </div>
             <div class="check-input">
                 <input type="checkbox" name="terms" class="input2" id="checkbox">
@@ -260,7 +260,6 @@
                                         interestData.value = interestData.value.substring(0, index)+'0'+interestData.value.substring(Number(index)+1)
                                     }
                                     document.getElementById(id).classList.toggle('checked')
-                                    console.log(interestData.value)
                                 }
                             })(interests[i], i)
                             container.appendChild(interestNode)
