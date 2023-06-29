@@ -13,8 +13,8 @@
         <div class="logo-text">Modern<br>Matrimony</div>
     </div>
 </nav>
-<form action="/form" method="POST" id="main-container">
-    <div class="form-container display" id="form-container1">
+<form action="/form" method="POST" id="main-container" autocomplete="off">
+    <div class="form-container" id="form-container1">
         <div class="head">
             <h1>Registration</h1>
             <h2 id>Personal Details</h2>
@@ -22,7 +22,7 @@
         <div class="registration-form">
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/person_icon.svg') }}" alt="">
-                <input type="text" class="input input1" placeholder="First Name" name="f_name" required autofocus>
+                <input type="text" class="input input1" placeholder="First Name" name="f_name" required>
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/person_icon.svg') }}" alt="">
@@ -50,7 +50,7 @@
             </div>
             <div class="text-input">
                 <img src="{{ url_for('static', filename='images/icons/city_icon.svg') }}" alt="">
-                <input type="text" class="input input1" placeholder="City" name="city" required>
+                <input id="city" class="input input1 autocomplete-input" placeholder="City" name="city" required>
             </div>
             <input id="submit1" class="submit" type="button" value="Next">
         </div>
@@ -92,7 +92,7 @@
             <input type="button" id="submit2" class="submit" value="Next">
         </div>
     </div>
-    <div class="form-container" id="form-container3">
+    <div class="form-container display" id="form-container3">
         <h1>I'm Looking to</h1>
         <div action="" class="choice-form">
             <input type="radio" value="date" class="date input3" name="choice">
@@ -126,6 +126,8 @@
         <input id="start-button" type="button" class="button submit" value="Finish">
     </div>
 </form>
+
+<script src="../static/scripts/form.js"></script>
 
 <script>
     const interests = ["reading", "painting", "photography", "cooking", "travelling", "sports", "workout", "lmusic", "pmusic", "dancing", "art", "movies", "gardening", "science", "social"]
