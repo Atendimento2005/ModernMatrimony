@@ -1,29 +1,36 @@
 const cities = ["Agra", "Ajmer", "Akbarpur", "Akola", "Aligarh", "Alwar", "Ambattur", "Amravati", "Amritsar", "Arrah", "Asansol", "Aurangabad", "Bareilly", "Bahraich", "Belgaum", "Bengaluru", "Bhavnagar", "Bhilai", "Bhiwandi", "Bhiwani", "Bhopal", "Bhubaneswar", "Bhagalpur", "Bikaner", "Bilaspur", "Brahmapur", "Budaun", "Bulandshahr", "Chandigarh", "Chennai", "Chittaurgarh", "Coimbatore", "Cuttack", "Davanagere", "Dehradun", "Delhi", "Delhi Cantonment", "Dhanbad", "Dhule", "Dimapur", "Durgapur", "Eluru", "Erode", "Etawah", "Faridabad", "Firozabad", "Gandhidham", "Gorakhpur", "Gulbarga", "Guna", "Guntur", "Gurgaon", "Guwahati", "Gwalior", "Habra", "Hajipur", "Haldia", "Haldwani-cum-Kathgodam", "Hanumangarh", "Haridwar", "Hindupur", "Hospet", "Howrah", "Hubli-Dharwad", "Hyderabad", "Indore", "Jabalpur", "Jaipur", "Jalandhar", "Jalgaon", "Jammu", "Jamnagar", "Jamshedpur", "Jehanabad", "Jhansi", "Jodhpur", "Kadapa", "Kakinada", "Kalyan-Dombivli", "Kanpur", "Karawal Nagar", "Karaikudi", "Karnal", "Katihar", "Kerala", "Khanna", "Khammam", "Khandwa", "Khora", "Kochi", "Kolhapur", "Kolkata", "Kollam", "Kota", "Kottayam", "Kozhikode", "Kulti", "Kumbakonam", "Kurnool", "Loni", "Lucknow", "Ludhiana", "Machilipatnam", "Madanapalle", "Madhyamgram", "Mahbubnagar", "Malegaon", "Malerkotla", "Mangalore", "Mathura", "Meerut", "Mirzapur", "Moradabad", "Motihari", "Mumbai", "Munger", "Muzaffarnagar", "Muzaffarpur", "Mysore", "Nabadwip", "Nadiad", "Nagaur", "Nagpur", "Nanded", "Nashik", "Nellore", "New Delhi", "Neemuch", "Nizamabad", "Noida", "North Dumdum", "North Lakhimpur", "Ongole", "Orai", "Palakkad", "Pali", "Palwal", "Panvel", "Parbhani", "Pathankot", "Patiala", "Patna", "Phusro", "Pimpri-Chinchwad", "Pondicherry", "Pune", "Purnia", "Purulia", "Raebareli", "Rajahmundry", "Rajkot", "Rajpur Sonarpur", "Rampur", "Raniganj", "Ratlam", "Raurkela", "Rohtak", "Rourkela", "Saharanpur", "Salem", "Sambalpur", "Satara", "Satna", "Secunderabad", "Shahjahanpur", "Shimoga", "Shivpuri", "Sikar", "Siliguri", "Srinagar", "Sultanpur", "Surat", "Surendranagar", "Suryapet", "Tambaram", "Tenali", "Thane", "Thanjavur", "Thiruvananthapuram", "Thrissur", "Tiruchirappalli", "Tirunelveli", "Tirupati", "Tiruppur", "Tiruvalla", "Tiruvannamalai", "Tonk", "Tumkur", "Udaipur", "Ujjain", "Ulhasnagar", "Unnao", "Vadodara", "Varanasi", "Vasai-Virar", "Vijayawada", "Visakhapatnam", "Warangal"];
 
-const input = document.getElementById('city')
+const city_input = document.getElementById('city')
 
-input.addEventListener("input", onInputChange);
+const genders = ["Male", "Female"]
 
-input.addEventListener("focusin", onInputChange);
+const gender_input = document.getElementById("gender")
 
-input.addEventListener("focusout", function (event) {
+function setAutocompleteDropdown(element, data){
 
-    //If focus still in div, don't remove dropdown
+    element.addEventListener("input", function (event) {
+        onInputChange(event.target, data)
+    });
 
-    if (event.target.parentElement.contains(event.relatedTarget)){
-        return;
-    }
+    element.addEventListener("focusin", function (event) {
+        onInputChange(event.target, data)
+    });
 
-    removeAutoCompleteDropdown(event.target)
+    element.addEventListener("focusout", function (event) {
 
-});
+        //If focus still in div, don't remove dropdown
+    
+        if (event.target.parentElement.contains(event.relatedTarget)){
+            return;
+        }
+    
+        removeAutoCompleteDropdown(event.target)
+    
+    });
 
-function onInputChange(e) {
+}
 
-    if(e.target == input){
-        var element = input;
-        var data = cities;
-    }
+function onInputChange(element, data) {
 
     removeAutoCompleteDropdown(element);
 
@@ -108,3 +115,7 @@ function removeAutoCompleteDropdown(element){
         }
     }
 }
+
+setAutocompleteDropdown(city_input, cities)
+
+setAutocompleteDropdown(gender_input, genders)

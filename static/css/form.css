@@ -503,6 +503,7 @@ a{
     max-height: 15vh;
     overflow-y: auto;
     overflow-x: hidden;
+    z-index: 2;
 }
 
 .autocomplete-list > li{
