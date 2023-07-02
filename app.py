@@ -55,22 +55,6 @@ def login():
     
     return render_template('login.html')
 
-@app.route('/registration')
-def registration():
-    return render_template('registration.html')
-
-@app.route('/registration2')
-def registration2():
-    return render_template('registration2.html')
-
-@app.route('/profile')
-def profile():
-    return render_template('profile.html')
-
-@app.route('/interests')
-def interests():
-    return render_template('interests.html')
-
 @app.route('/home')
 def home():
     if session.get('id'):
