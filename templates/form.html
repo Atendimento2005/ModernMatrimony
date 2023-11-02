@@ -13,8 +13,8 @@
         <div class="logo-text">Modern<br>Matrimony</div>
     </div>
 </nav>
-<form action="/form" method="POST" id="main-container" autocomplete="off">
-    <div class="form-container display" id="form-container1">
+<form action="/register" method="POST" id="main-container" autocomplete="off">
+    <div class="form-container " id="form-container1">
         <div class="head">
             <h1>Registration</h1>
             <h2 id>Personal Details</h2>
@@ -52,10 +52,10 @@
                 <img src="{{ url_for('static', filename='images/icons/city_icon.svg') }}" alt="">
                 <input id="city" class="input input1 autocomplete-input" placeholder="City" name="city" required>
             </div>
-            <input id="submit1" class="submit" type="button" value="Next">
+            <input id="submit1" class="submit btn" type="button" value="Next">
         </div>
     </div>
-    <div class="form-container" id="form-container2">
+    <div class="form-container display" id="form-container2">
         <div class="head">
             <h1>Registration</h1>
             <h2>Other Details</h2>
@@ -89,7 +89,7 @@
                 <input type="checkbox" name="terms" class="input2" id="checkbox">
                 <label for="checkbox" id="text-label">I Agree to all the <a href="">Terms and Conditions</a></label>
             </div>
-            <input type="button" id="submit2" class="submit" value="Next">
+            <input type="button" id="submit2" class="submit btn" value="Next">
         </div>
     </div>
     <div class="form-container display" id="form-container3">
@@ -113,7 +113,7 @@
                 </div>
             </div>
             <input type="text" id="dummy_text_input" class="dummy_input" tabindex="-1" value="(You can always change this later on)">
-            <input type="button" id="submit3" class="submit" value="Next">
+            <input type="button" id="submit3" class="submit btn" value="Next">
         </div>
     </div>
     <div class="form-container display" id="form-container4">
@@ -123,7 +123,24 @@
         <div action="/test" method="post" id="myform"></div>
         <div id="interests-container">
         </div>
-        <input id="start-button" type="button" class="button submit" value="Finish">
+        <input id="start-button" type="button" class="button btn submit" value="Next">
+    </div>
+    <div class="form-container display" id="form-container5">
+        <h1>Tell us about yourself</h1>
+            <div class="bio-image-container">
+                <div class="bio-container">
+                    <img src="/static/images/icons/pfp-icon.png" id="pfp-icon" alt="pfp-icon">
+                    <div class="image-upload">Upload Profile Picture</div>
+                </div>
+                <div class="bio-container">
+                    <p class="bio-header">Write something about yourself    
+                        <img src="/static/images/icons/bio-icon.svg" id="bio-icon" alt="">
+                    </p>
+                    <input class="bio-input input5" type="text" id="bio" name="bio" required minlength="30">
+                </div>
+            </div>
+            <p>(You can always change this later on)</p>
+            <input type="submit" id="submit4" formaction="/register" formmethod="post" class="submit button" value="Finish">
     </div>
 </form>
 
@@ -149,9 +166,13 @@
         "social": "Social Causes",
     }
 
-    var x = document.getElementsByClassName('submit');
+    var x = document.getElementsByClassName('btn');
     var form = document.getElementById('main-container');
     var l = x.length;
+
+    form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    });
     
     function validation(i) {
         let a = document.getElementsByClassName(`input${i}`)
@@ -197,7 +218,7 @@
                     let date = new Date(`${a[j].value}T00:00`);
                     const curr_date = new Date();
                     let diffTime = Math.abs(curr_date - date);
-                    const diffyr = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 365.25));
+                    const diffyr = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365.25));
                     if (diffyr < 18){
                         a[j].setCustomValidity('You must be 18 years old or above');
                         a[j].reportValidity()
@@ -235,38 +256,44 @@
     for (i = 0; i < l; i++) {
         x[i].onclick = ((num, form) => {
             return () => {
-                if (validation(num+1)) {
+                if (validation(num+1))  {
+                     if (num<4) {   
+                        document.getElementsByClassName('form-container')[num].classList.add('current')
 
-                    document.getElementsByClassName('form-container')[num].classList.add('current')
-
-                    if (num == 2) {
-                        container = document.getElementById("interests-container")
-                        for (i in interests) {
-                            form = document.getElementById('myform')
-                            interestsInput = document.getElementById('interests-input')
-                            interestNode = document.createElement('div')
-                            interestNode.id = interests[i]
-                            interestNode.classList.add("interest")
-                            interestNode.innerHTML = `
-                                <img src="/static/images/interests/${interests[i]}.png" class="interest-image" alt="">
-                                <p class="interest-text">${interestText[interests[i]]}</p>
-                            `
-                            interestNode.onclick = (function (id, index) {
-                                return function () {
-                                    var interestData = document.getElementById('interests-input')
-                                    if (interestData.value[index] == '0') {
-                                        interestData.value = interestData.value.substring(0, index)+'1'+interestData.value.substring(Number(index)+1)
-                                    } else {
-                                        interestData.value = interestData.value.substring(0, index)+'0'+interestData.value.substring(Number(index)+1)
+                        if (num == 2) {
+                            container = document.getElementById("interests-container")
+                            for (i in interests) {
+                                form = document.getElementById('myform')
+                                interestsInput = document.getElementById('interests-input')
+                                interestNode = document.createElement('div')
+                                interestNode.id = interests[i]
+                                interestNode.classList.add("interest")
+                                interestNode.innerHTML = `
+                                    <img src="/static/images/interests/${interests[i]}.png" class="interest-image" alt="">
+                                    <p class="interest-text">${interestText[interests[i]]}</p>
+                                `
+                                interestNode.onclick = (function (id, index) {
+                                    return function () {
+                                        var interestData = document.getElementById('interests-input')
+                                        if (interestData.value[index] == '0') {
+                                            interestData.value = interestData.value.substring(0, index)+'1'+interestData.value.substring(Number(index)+1)
+                                        } else {
+                                            interestData.value = interestData.value.substring(0, index)+'0'+interestData.value.substring(Number(index)+1)
+                                        }
+                                        document.getElementById(id).classList.toggle('checked')
                                     }
-                                    document.getElementById(id).classList.toggle('checked')
-                                }
-                            })(interests[i], i)
-                            container.appendChild(interestNode)
-                        }   
-                    }
+                                })(interests[i], i)
+                                container.appendChild(interestNode)
+                            }   
+                        }
 
-                    document.getElementsByClassName('form-container')[num + 1].classList.remove('display')
+                        document.getElementsByClassName('form-container')[num + 1].classList.remove('display')
+                    }
+                    // else{
+                    //     let formelem = document.getElementById("main-container")
+                    //     let submitter = document.getElementById("submit4")
+                    //     formelem.requestSubmit(submitter)
+                    // }
                 }
             }
         })(i, form)

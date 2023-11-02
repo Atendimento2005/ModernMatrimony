@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Modern Matrimony</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css' ) }}">
+{% endblock %}
+
+{% block body %}
+<div id="background"></div>
+<img draggable="false" id="bgimage" src="{{ url_for('static', filename='images/bgimage.png')}}" alt="">
+
+<nav>
+    <div class="nav-left-container">
+        <img draggable="false" src="/static/images/icons/temp.svg" alt="temp">
+        <!-- TEMP IMG -->
+    </div>
+    <div id="logo">
+        <img draggable="false" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+        <div class="logo-text">Modern<br>Matrimony</div>
+    </div>
+    <div class="nav-right-container">
+        <div class="notifications-icon-container pending">
+            <img draggable="false" class="notifications-icon" src="/static/images/icons/notifications.svg" alt="notifications" onclick="toggleNotifications()">
+            <div id="notifications-container" class="dnone">
+                <div class="notification">Arim Kaji</div>
+                <div class="notification">Boddo</div>
+                <div class="notification">Paji</div>
+            </div>
+        </div>
+        <a href="/">
+            <img draggable="false" src="/static/images/profiles/{{id}}.webp" alt="profile-picture" class="nav-profile-icon">
+        </a>
+    </div>
+</nav>
+
+<div class="main-container">
+
+</div>
+
+
+<script>
+    function toggleNotifications(){
+        notifications = document.getElementById('notifications-container')
+        notifications.classList.toggle("dnone")
+    }
+</script>
+
+{% endblock %}

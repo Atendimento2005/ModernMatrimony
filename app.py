@@ -55,6 +55,10 @@ def login():
     
     return render_template('login.html')
 
+@app.route('/profile')
+def profile():
+    return render_template('profile.html')
+
 @app.route('/home')
 def home():
     if session.get('id'):
@@ -78,8 +82,9 @@ def home():
     
     return redirect('/login')
 
-@app.route('/form', methods = ['GET', 'POST'])
-def form():
+@app.route('/register', methods = ['GET', 'POST'])
+def register():
+    print(request.method)
     if request.method == 'POST':
         formData = request.form
         data = (
@@ -93,13 +98,14 @@ def form():
             1 if formData.get('date') == 'on' or formData.get('not-sure') else 0,
             1 if formData.get('marry') == 'on' or formData.get('not-sure') else 0,
             formData.get('interests'),
-            'bio bio biobiobiobiobiobiobiobiobiobiobiobiobiobiobiobiobiobiobiobiobio',
+            formData.get('bio').strip(),
             formData.get('email').strip(),
             formData.get('ph').strip(),
             formData.get('occupation').strip(),
             formData.get('alma').strip(),
             formData.get('password').strip()
         )
+        print("hello1")
         cur.execute(f'''INSERT INTO Users(
                     name, 
                     age, 
@@ -119,7 +125,12 @@ def form():
                     password)
         VALUES {data};''')
         db.commit()
-        return 'updated DB!'
+        print('db updated')
+        cur.execute(f"SELECT (id) FROM Users WHERE email = '{data[11]}' AND password = '{data[15]}'")
+        account_id = cur.fetchone()
+        session.permanent = False
+        session['id'] = account_id[0]
+        return redirect('/home')
     
     return render_template('form.html')
 
