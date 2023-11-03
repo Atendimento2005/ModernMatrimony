@@ -84,7 +84,6 @@ def home():
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
-    print(request.method)
     if request.method == 'POST':
         formData = request.form
         data = (
@@ -105,7 +104,7 @@ def register():
             formData.get('alma').strip(),
             formData.get('password').strip()
         )
-        print("hello1")
+        cur = db.cursor()
         cur.execute(f'''INSERT INTO Users(
                     name, 
                     age, 
@@ -126,10 +125,37 @@ def register():
         VALUES {data};''')
         db.commit()
         print('db updated')
-        cur.execute(f"SELECT (id) FROM Users WHERE email = '{data[11]}' AND password = '{data[15]}'")
-        account_id = cur.fetchone()
+        
+        cur.execute(f"SELECT * FROM Users WHERE email = '{data[11]}' AND password = '{data[15]}'")
+        user = cur.fetchone()
+
+        #creating new relations (recommendations)
+
+        cur.execute(f'SELECT * FROM Users WHERE (age > {user[2]-3} AND age < {user[2]+3}) AND (dating = {user[8]} OR marriage = {user[9]}) AND id != {user[0]};')
+        relUsers = cur.fetchall()
+        cur = db.cursor()
+        # cur.execute(f'SELECT first_id, second_id FROM Relations WHERE first_id = {user[0]} OR second_id = {user[0]};')
+        # relatedIDs = [x[0] if x[1] == user[0] else x[1] for x in cur.fetchall()]
+        queries = []
+        for relUser in relUsers:
+            # if relUser[0] in relatedIDs: continue
+            score = 0
+            score += (6 - min(abs(relUser[2] - user[2]), 6))*(10/6)
+            for i in range(4, 14):
+                if i == 10:
+                    for j in range(15):
+                        if user[10][j] == relUser[10][j]:
+                            score += 1
+                elif i not in [8, 9, 10, 11, 12, 13]:
+                    score += 3 if user[i].lower() == relUser[i].lower() else 0
+            queries.append((user[0], relUser[0], score))
+        if len(queries):
+            cur = db.cursor()
+            cur.execute(f'INSERT INTO Relations(first_id, second_id, score) VALUES {str(queries)[1:-1]};')
+            db.commit()
+
         session.permanent = False
-        session['id'] = account_id[0]
+        session['id'] = user[0]
         return redirect('/home')
     
     return render_template('form.html')

@@ -52,7 +52,7 @@
                 <img src="{{ url_for('static', filename='images/icons/city_icon.svg') }}" alt="">
                 <input id="city" class="input input1 autocomplete-input" placeholder="City" name="city" required>
             </div>
-            <input id="submit1" class="submit btn" type="button" value="Next">
+            <input id="submit1" class="submit" type="button" value="Next">
         </div>
     </div>
     <div class="form-container display" id="form-container2">
@@ -89,7 +89,7 @@
                 <input type="checkbox" name="terms" class="input2" id="checkbox">
                 <label for="checkbox" id="text-label">I Agree to all the <a href="">Terms and Conditions</a></label>
             </div>
-            <input type="button" id="submit2" class="submit btn" value="Next">
+            <input type="button" id="submit2" class="submit" value="Next">
         </div>
     </div>
     <div class="form-container display" id="form-container3">
@@ -113,7 +113,7 @@
                 </div>
             </div>
             <input type="text" id="dummy_text_input" class="dummy_input" tabindex="-1" value="(You can always change this later on)">
-            <input type="button" id="submit3" class="submit btn" value="Next">
+            <input type="button" id="submit3" class="submit" value="Next">
         </div>
     </div>
     <div class="form-container display" id="form-container4">
@@ -123,7 +123,7 @@
         <div action="/test" method="post" id="myform"></div>
         <div id="interests-container">
         </div>
-        <input id="start-button" type="button" class="button btn submit" value="Next">
+        <input id="start-button" type="button" class="button submit" value="Next">
     </div>
     <div class="form-container display" id="form-container5">
         <h1>Tell us about yourself</h1>
@@ -166,13 +166,9 @@
         "social": "Social Causes",
     }
 
-    var x = document.getElementsByClassName('btn');
+    var x = document.getElementsByClassName('submit');
     var form = document.getElementById('main-container');
     var l = x.length;
-
-    form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    });
     
     function validation(i) {
         let a = document.getElementsByClassName(`input${i}`)
@@ -289,11 +285,9 @@
 
                         document.getElementsByClassName('form-container')[num + 1].classList.remove('display')
                     }
-                    // else{
-                    //     let formelem = document.getElementById("main-container")
-                    //     let submitter = document.getElementById("submit4")
-                    //     formelem.requestSubmit(submitter)
-                    // }
+                    else{
+                        form.submit()
+                    }
                 }
             }
         })(i, form)
