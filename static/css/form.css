@@ -72,7 +72,7 @@ nav{
     transform: translateY(100vh);
 }
 
-#form-container1, #form-container2, .interest, #form-container5{
+#form-container1, #form-container2, .interest{
     background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgba(255, 255, 255, 0.2);
     box-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12);
     border-radius: 50px;
@@ -83,6 +83,18 @@ nav{
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
+    position: absolute;
+    transition: transform 0.5s ease-in-out,
+                opacity 0.75s ease-in-out;
+}
+
+#form-container5{
+    padding: 3rem;    
+    height: 65.5vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     position: absolute;
     transition: transform 0.5s ease-in-out,
                 opacity 0.75s ease-in-out;
