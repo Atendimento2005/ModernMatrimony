@@ -14,7 +14,7 @@
     </div>
 </nav>
 <form action="/register" method="POST" id="main-container" autocomplete="off">
-    <div class="form-container " id="form-container1">
+    <div class="form-container display" id="form-container1">
         <div class="head">
             <h1>Registration</h1>
             <h2 id>Personal Details</h2>
@@ -125,21 +125,18 @@
         </div>
         <input id="start-button" type="button" class="button submit" value="Next">
     </div>
-    <div class="form-container display" id="form-container5">
-        <h1>Tell us about yourself</h1>
+    <div class="form-container " id="form-container5">
+        <h1>Complete your Profile!</h1>
             <div class="bio-image-container">
                 <div class="bio-container">
                     <img src="/static/images/icons/pfp-icon.png" id="pfp-icon" alt="pfp-icon">
                     <div class="image-upload">Upload Profile Picture</div>
                 </div>
                 <div class="bio-container">
-                    <p class="bio-header">Write something about yourself    
-                        <img src="/static/images/icons/bio-icon.svg" id="bio-icon" alt="">
-                    </p>
-                    <input class="bio-input input5" type="text" id="bio" name="bio" required minlength="30">
+                    <p class="bio-header">Write something about yourself</p>
+                    <textarea class="bio-input input5" placeholder="About me (max 200 characters)" type="text" id="bio" name="bio" required minlength="30" maxlength="200"></textarea>
                 </div>
             </div>
-            <p>(You can always change this later on)</p>
             <input type="submit" id="submit4" formaction="/register" formmethod="post" class="submit button" value="Finish">
     </div>
 </form>
