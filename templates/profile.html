@@ -28,13 +28,34 @@
             </div>
         </div>
         <a href="/">
-            <img draggable="false" src="/static/images/profiles/{{id}}.webp" alt="profile-picture" class="nav-profile-icon">
+            <img draggable="false" src="/static/images/profiles/5.webp" alt="profile-picture" class="nav-profile-icon">
         </a>
     </div>
 </nav>
 
 <div class="main-container">
-
+    <div class="profile-card">
+        <div class="banner-img"><img src="{{ url_for('static', filename='images/banner_profile.png') }}" alt=""></div>
+        <div class="data-div">
+            <div class="interest-tags"></div>
+            <div class="data-container">
+                <div class="text-data">
+                    <p class="name-box">Arim Kaji, 18</p>
+                    <div class="career-cont">
+                        <div class="data1 datal"><img class="data-icon" src="{{ url_for('static', filename='images/icons/city_icon.svg') }}" alt=""> Kolkata</div>
+                        <div class="data2 datal"><img class="data-icon" src="{{ url_for('static', filename='images/icons/briefcase_icon.svg') }}" alt=""> Student</div>
+                        <div class="data3 datar"><img class="data-icon" src="{{ url_for('static', filename='images/icons/board_icon.svg') }}" alt=""> DPS RPK</div>
+                        <div class="data4 datar"><img class="data-icon" src="{{ url_for('static', filename='images/icons/school_icon.svg') }}" alt=""> IIT Dholakpur</div>
+                    </div>
+                </div>
+                <button class="match-btn">Match!</button>
+            </div>
+        </div>
+    </div>
+    <div class="about-card">
+        <p class="about-header">About</p>
+        <p class="about-body">Passionate and curious, I embrace new experiences and find joy in art, travel, and personal growth. With empathy and optimism, let's create lasting memories and embrace life's beauty together.</p>
+    </div>
 </div>
 
 

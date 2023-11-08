@@ -57,6 +57,8 @@ def login():
 
 @app.route('/profile')
 def profile():
+    # cur.execute(f"Select * from Users where id={id};")
+    # user = cur.fetchall()
     return render_template('profile.html')
 
 @app.route('/home')
