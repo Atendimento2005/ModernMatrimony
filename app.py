@@ -85,6 +85,33 @@ def home():
     
     return redirect('/login')
 
+@app.route('/search')
+def search():
+    if session.get('id'):
+        if not (session.get('name') and session.get('age') and session.get('bio') and session.get('interests')):
+            user_data = helpers.fetchUserByID(db, int(session.get('id')), ('name', 'age', 'bio', 'interests'))
+            session['name'] = user_data['name']
+            session['age'] = user_data['age']
+            session['bio'] = user_data['bio']
+            session['interests'] = user_data['interests']
+            
+        # relation_data = helpers.fetchReccomendations(db, int(session.get('id')))
+
+        # return render_template('homepage.html', 
+                            #    id = session.get('id'),  
+                            #    name = session.get('name'), 
+                            #    age = session.get('age'), 
+                            #    bio = session.get('bio'), 
+                            #    interests=session.get('interests'), 
+                            #    relation_data = relation_data
+                            #    )
+    
+        return render_template('search.html',
+                               id = session.get('id'))
+
+    return redirect('/login')
+    
+
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
     if request.method == 'POST':
