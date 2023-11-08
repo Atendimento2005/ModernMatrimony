@@ -353,6 +353,7 @@ h2{
 
 .nav-left-container{
     margin-right: auto;
+    gap: 2rem;
     height: 2.5rem;
     width: 20vw;
 }

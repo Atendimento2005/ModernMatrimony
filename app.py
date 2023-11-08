@@ -5,6 +5,7 @@ import os
 from dotenv import load_dotenv
 import mysql.connector
 import helpers
+import shutil
 
 load_dotenv()
 
@@ -55,11 +56,11 @@ def login():
     
     return render_template('login.html')
 
-@app.route('/profile')
-def profile():
-    # cur.execute(f"Select * from Users where id={id};")
-    # user = cur.fetchall()
-    return render_template('profile.html')
+@app.route('/profile/<id>')
+def profile(id):
+    cur.execute(f"Select * from Users where id={id};")
+    user = cur.fetchall()
+    return render_template('profile.html', user=user[0])
 
 @app.route('/home')
 def home():
@@ -130,6 +131,8 @@ def register():
         
         cur.execute(f"SELECT * FROM Users WHERE email = '{data[11]}' AND password = '{data[15]}'")
         user = cur.fetchone()
+
+        shutil.copy('images/profiles/0.webp',f'images/profiles/{user[0]}.webp')
 
         #creating new relations (recommendations)
 

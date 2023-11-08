@@ -11,7 +11,8 @@
 
 <nav>
     <div class="nav-left-container">
-        <img draggable="false" src="/static/images/icons/temp.svg" alt="temp">
+        <a href="/home"><img draggable="false" src="/static/images/icons/hamburger.svg" alt="temp"></a>
+        <a href="/search"><img draggable="false" src="/static/images/icons/search-line.svg" alt="temp"></a>
         <!-- TEMP IMG -->
     </div>
     <div id="logo">
@@ -28,7 +29,7 @@
             </div>
         </div>
         <a href="/">
-            <img draggable="false" src="/static/images/profiles/5.webp" alt="profile-picture" class="nav-profile-icon">
+            <img draggable="false" src="/static/images/profiles/{{ user[0] }}.webp" alt="profile-picture" class="nav-profile-icon">
         </a>
     </div>
 </nav>
@@ -40,12 +41,12 @@
             <div class="interest-tags"></div>
             <div class="data-container">
                 <div class="text-data">
-                    <p class="name-box">Arim Kaji, 18</p>
+                    <p class="name-box">{{ user[1] }}, {{ user[2] }}</p>
                     <div class="career-cont">
-                        <div class="data1 datal"><img class="data-icon" src="{{ url_for('static', filename='images/icons/city_icon.svg') }}" alt=""> Kolkata</div>
-                        <div class="data2 datal"><img class="data-icon" src="{{ url_for('static', filename='images/icons/briefcase_icon.svg') }}" alt=""> Student</div>
-                        <div class="data3 datar"><img class="data-icon" src="{{ url_for('static', filename='images/icons/board_icon.svg') }}" alt=""> DPS RPK</div>
-                        <div class="data4 datar"><img class="data-icon" src="{{ url_for('static', filename='images/icons/school_icon.svg') }}" alt=""> IIT Dholakpur</div>
+                        <div class="data1 datal"><img class="data-icon" src="{{ url_for('static', filename='images/icons/city_icon.svg') }}" alt="">{{ user[7] }}</div>
+                        <div class="data2 datal"><img class="data-icon" src="{{ url_for('static', filename='images/icons/briefcase_icon.svg') }}" alt="">{{ user[14] }}</div>
+                        <div class="data3 datar"><img class="data-icon" src="{{ url_for('static', filename='images/icons/board_icon.svg') }}" alt="">{{ user[6] }}</div>
+                        <div class="data4 datar"><img class="data-icon" src="{{ url_for('static', filename='images/icons/school_icon.svg') }}" alt="">{{ user[15] }}</div>
                     </div>
                 </div>
                 <button class="match-btn">Match!</button>
@@ -54,7 +55,7 @@
     </div>
     <div class="about-card">
         <p class="about-header">About</p>
-        <p class="about-body">Passionate and curious, I embrace new experiences and find joy in art, travel, and personal growth. With empathy and optimism, let's create lasting memories and embrace life's beauty together.</p>
+        <p class="about-body">{{ user[11] }}</p>
     </div>
 </div>
 

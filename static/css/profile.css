@@ -107,6 +107,7 @@ nav{
 .nav-left-container{
     margin-right: auto;
     height: 2.5rem;
+    gap: 2rem;
     width: 20vw;
 }
 
@@ -223,7 +224,7 @@ nav{
 }
 
 .career-cont{
-    width: 50%;
+    width: 70%;
     padding: 0.5rem;
     display: inline-grid;
     grid-template-areas: 
