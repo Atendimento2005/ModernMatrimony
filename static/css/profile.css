@@ -159,6 +159,7 @@ nav{
 }
 
 .data-div{
+    position: relative;
     height: 55%;
     display: flex;
     justify-content: space-evenly;
@@ -166,10 +167,58 @@ nav{
     align-items: center;
 }
 
+.profile-picture{
+    margin-right: 2rem;
+    border-radius: 20rem;
+    border: 7.095px solid #281178;
+    width: 13rem;
+    top: -7rem;
+    left: 5rem;
+    position: absolute;
+
+}
+
 .interest-tags{
-    background-color: #5831DD;
     height: 20%;
-    width: 90%;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tag{
+    background: #D7CBFF;
+    border: 0.560308px solid #B5AADC;
+    border-radius: 7.86528px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: max-content;
+    padding: 0 0.2rem;
+    margin-right: 0.6rem;
+    margin-bottom: 0.3rem;
+}
+
+.suggestion-tag-icon{
+    height: 0.5rem;
+    padding: 0 0.1rem;
+}
+
+.suggestion-tag-text{
+    padding: 0 0.1rem;
+    font-family: 'Inter';
+    font-weight: 449;
+    font-size: 1rem;
+    line-height: 18px;
+    letter-spacing: -0.075em;
+
+    color: #9084B8;
+    font-variation-settings: 'slnt' -10;
+
 }
 
 .data-container{
@@ -295,7 +344,7 @@ nav{
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .about-header{

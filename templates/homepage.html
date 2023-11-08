@@ -46,30 +46,7 @@
         <p class="suggestion-heading">Our Picks:</p>
         <div class="suggestion-card-container" id="ourpicks">
             {% for user in relation_data%}
-            <div class="suggestion-card">
-                <img draggable="false" class = "suggestion-img"src="/static/images/profiles/{{user['id']}}.webp" alt="profile-picture">
-                <div class="suggestion-info">
-                    <p class="suggestion-name">{{user['name']}}, {{user['age']}}</p>
-                    <p class="suggestion-bio">{{user['bio']}}</p>
-                </div>
-                <div class="suggestion-tags-container">
-                    {% for i in range(user['interests']|length) %}
-                        {% if user['interests'][i] == '1' %}
-                            <div class="tag">
-                                <img draggable="false" src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
-                                <p class="suggestion-tag-text">{{interestText[i]}}</p>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
-        {% endfor %}
-        </div>
-    </div>
-    <div class="suggestion-container">
-        <p class="suggestion-heading">Near You  :</p>
-        <div class="suggestion-card-container" id="nearyou">
-            {% for user in relation_data%}
+            <a href="/profile/{{user['id']}}" style="text-decoration: none;">
                 <div class="suggestion-card">
                     <img draggable="false" class = "suggestion-img"src="/static/images/profiles/{{user['id']}}.webp" alt="profile-picture">
                     <div class="suggestion-info">
@@ -87,9 +64,36 @@
                         {% endfor %}
                     </div>
                 </div>
+            </a>
             {% endfor %}
         </div>
     </div>
+    <div class="suggestion-container">
+        <p class="suggestion-heading">Near You  :</p>
+        <div class="suggestion-card-container" id="nearyou">
+            {% for user in relation_data%}
+            <a href="/profile/{{user['id']}}" style="text-decoration: none;">
+                <div class="suggestion-card">
+                    <img draggable="false" class = "suggestion-img"src="/static/images/profiles/{{user['id']}}.webp" alt="profile-picture">
+                    <div class="suggestion-info">
+                        <p class="suggestion-name">{{user['name']}}, {{user['age']}}</p>
+                        <p class="suggestion-bio">{{user['bio']}}</p>
+                    </div>
+                    <div class="suggestion-tags-container">
+                        {% for i in range(user['interests']|length) %}
+                        {% if user['interests'][i] == '1' %}
+                        <div class="tag">
+                            <img draggable="false" src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
+                            <p class="suggestion-tag-text">{{interestText[i]}}</p>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+            </div>
+        </div>
     <div class="my-profile-container">
         <div class="profile-header">
             <p class="suggestion-heading">Your Profile Card:</p>

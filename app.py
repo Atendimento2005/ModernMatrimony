@@ -60,7 +60,7 @@ def login():
 def profile(id):
     cur.execute(f"Select * from Users where id={id};")
     user = cur.fetchall()
-    return render_template('profile.html', user=user[0])
+    return render_template('profile.html', user=user[0], id = session.get('id') if session.get(id) else 0)
 
 @app.route('/home')
 def home():

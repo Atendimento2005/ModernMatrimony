@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block body %}
+
+{% set interestText = ["Reading", "Painting", "Photography", "Cooking", "Travelling", "Sports", "Working out", "Listening to music", "Playing music", "Dancing", "Art", "Movies", "Gardening", "Science", "Social Causes"] %}
+
 <div id="background"></div>
 <img draggable="false" id="bgimage" src="{{ url_for('static', filename='images/bgimage.png')}}" alt="">
 
@@ -38,7 +41,17 @@
     <div class="profile-card">
         <div class="banner-img"><img src="{{ url_for('static', filename='images/banner_profile.png') }}" alt=""></div>
         <div class="data-div">
-            <div class="interest-tags"></div>
+            <img class="profile-picture" src="/static/images/profiles/{{ user[0] }}.webp" alt="">
+            <div class="interest-tags">
+                {% for i in range(user[10]|length) %}
+                    {% if user[10][i] == '1' %}
+                        <div class="tag">
+                            <img draggable="false" src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
+                            <p class="suggestion-tag-text">{{interestText[i]}}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
             <div class="data-container">
                 <div class="text-data">
                     <p class="name-box">{{ user[1] }}, {{ user[2] }}</p>
