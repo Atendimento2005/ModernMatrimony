@@ -85,7 +85,7 @@ def home():
     
     return redirect('/login')
 
-@app.route('/search')
+@app.route('/search', methods = ['GET', 'POST'])
 def search():
     if session.get('id'):
         if not (session.get('name') and session.get('age') and session.get('bio') and session.get('interests')):
@@ -94,20 +94,30 @@ def search():
             session['age'] = user_data['age']
             session['bio'] = user_data['bio']
             session['interests'] = user_data['interests']
-            
-        # relation_data = helpers.fetchReccomendations(db, int(session.get('id')))
 
-        # return render_template('homepage.html', 
-                            #    id = session.get('id'),  
-                            #    name = session.get('name'), 
-                            #    age = session.get('age'), 
-                            #    bio = session.get('bio'), 
-                            #    interests=session.get('interests'), 
-                            #    relation_data = relation_data
-                            #    )
-    
-        return render_template('search.html',
-                               id = session.get('id'))
+        if request.method == "POST":
+            formData = request.form
+            s_input = formData.get("searchbar")
+            amin_input = int(formData.get("age-min"))
+            amax_input = int(formData.get("age-max"))
+            in_input = formData.get("interests")
+            c_input = formData.get("city")
+
+            s_query = f"LOWER(name) LIKE '%{s_input.lower()}%' AND " if s_input else ''
+            a_query = f"age BETWEEN {amin_input} and {amax_input} AND " if amin_input and amax_input else "age BETWEEN 18 and 60 AND "
+            c_query = f"LOWER(city) LIKE '%{c_input.lower()}%' AND " if c_input else ''
+            in_query = f"interests LIKE '{in_input}'" if in_input.count('1') > 0 else f"interests LIKE '_______________'"
+
+            print(f'Select * from Users WHERE {s_query + a_query + c_query + in_query};')
+
+            cur.execute(f'Select * from Users WHERE {s_query + a_query + c_query + in_query};')
+            data = cur.fetchall()
+            return render_template('search.html',data=data, id = session.get('id'))
+
+        else:
+            cur.execute('select * from Users ORDER BY name;')
+            data = cur.fetchall()
+            return render_template('search.html',data=data,id = session.get('id'))
 
     return redirect('/login')
     

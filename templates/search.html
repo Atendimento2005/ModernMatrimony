@@ -14,7 +14,8 @@
 
 <nav>
     <div class="nav-left-container">
-        <img draggable="false" src="/static/images/icons/temp.svg" alt="temp">
+        <a href="/home"><img draggable="false" src="/static/images/icons/hamburger.svg" alt="temp"></a>
+        <a href="/search"><img draggable="false" src="/static/images/icons/search-line.svg" alt="temp"></a>
         <!-- TEMP IMG -->
     </div>
     <div id="logo">
@@ -36,7 +37,7 @@
     </div>
 </nav>
 
-<div draggable="false" id="main-container">
+<form action="/search"  autocomplete="off" method="post" draggable="false" id="main-container">
     <div class="search-container">
         <div class="filter">
             <p class="filter-header">Filters</p>
@@ -57,48 +58,43 @@
             </div>
             <div class="filter-elem interests-elem">
                 <p class="filter-title">Featured Interests</p>
-                <input type="text" name="interests" class="dnone" id="interests-input" value="000000000000000">
+                <input type="text" name="interests" class="dnone" id="interests-input" value="_______________">
                 <div id="interests-container">
                 </div>
             </div>
         </div>
         <div class="search-bar-container" style="position: relative;">
-            <input type="text" name="" id="search-bar" placeholder="Search here for your ideal match">
-            <img draggable="false" src="{{ url_for('static', filename='images/icons/search.svg')}}" alt=""
-             style="position: absolute; right: 2.75rem; height: 1.5rem;">
+            <input type="text" name="searchbar" id="search-bar" placeholder="Search here for your ideal match">
+            <button style="position: absolute; right: 2.75rem; height: 1.5rem; margin-right: 1rem; border: none; background-color: transparent;" type="submit"><img draggable="false" src="{{ url_for('static', filename='images/icons/search.svg')}}" alt=""></button>
         </div>
         <div id="search-results-container">
+            {% for user in data %}
             <div class="result">
-                <img src="/static/images/profiles/1.webp" alt="" class="result-image">
+                <img src="/static/images/profiles/{{ user[0] }}.webp" alt="" class="result-image">
                 <div class="result-info">
-                    <p class="result-name">Manka God, 27</p>
+                    <p class="result-name">{{ user[1] }}, {{ user[2] }}</p>
+
+                    {% for i in range(user[10]|length) %}
+                    {% if user[10][i] == '1' %}
 
                     <div class="tag">
                         <img draggable="false" src="/static/images/icons/online.svg" alt="" class="tag-icon">
-                        <p class="tag-text">Manka</p>
+                        <p class="tag-text">{{ interestText[i] }}</p>
                     </div>
 
-                    <div class="tag">
-                        <img draggable="false" src="/static/images/icons/online.svg" alt="" class="tag-icon">
-                        <p class="tag-text">Manka</p>
-                    </div>
+                    {% endif %}
+                    {% endfor %}
 
-                    <div class="tag">
-                        <img draggable="false" src="/static/images/icons/online.svg" alt="" class="tag-icon">
-                        <p class="tag-text">Manka</p>
-                    </div>
                 </div>
                 <div class="result-bio">
-                    Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! Manka god is v nice!! 
+                    {{ user[11] }}
                 </div>
             </div>
-            <div class="result"></div>
-            <div class="result"></div>
-            <div class="result"></div>
+            {% endfor %}
         </div>
     </div>
     
-</div>
+</form>
 
 <script>
 
