@@ -26,9 +26,11 @@
         <div class="notifications-icon-container pending">
             <img draggable="false" class="notifications-icon" src="/static/images/icons/notifications.svg" alt="notifications" onclick="toggleNotifications()">
             <div id="notifications-container" class="dnone">
-                <div class="notification">Arim Kaji</div>
-                <div class="notification">Boddo</div>
-                <div class="notification">Paji</div>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style="text-decoration: none;">
+                    <div class="notification">Notification 1</div>
+                </a>
+                <div class="notification">Notification 2</div>
+                <div class="notification">Notification 3</div>
             </div>
         </div>
         <a href="/">
@@ -69,27 +71,29 @@
         </div>
         <div id="search-results-container">
             {% for user in data %}
-            <div class="result">
-                <img src="/static/images/profiles/{{ user[0] }}.webp" alt="" class="result-image">
-                <div class="result-info">
-                    <p class="result-name">{{ user[1] }}, {{ user[2] }}</p>
-
-                    {% for i in range(user[10]|length) %}
-                    {% if user[10][i] == '1' %}
-
-                    <div class="tag">
-                        <img draggable="false" src="/static/images/icons/online.svg" alt="" class="tag-icon">
-                        <p class="tag-text">{{ interestText[i] }}</p>
+            <a href="/profile/{{user[0]}}" style="text-decoration: none;">
+                <div class="result">
+                    <img src="/static/images/profiles/{{ user[0] }}.webp" alt="" class="result-image">
+                    <div class="result-info">
+                        <p class="result-name">{{ user[1] }}, {{ user[2] }}</p>
+    
+                        {% for i in range(user[10]|length) %}
+                        {% if user[10][i] == '1' %}
+    
+                        <div class="tag">
+                            <img draggable="false" src="/static/images/icons/online.svg" alt="" class="tag-icon">
+                            <p class="tag-text">{{ interestText[i] }}</p>
+                        </div>
+    
+                        {% endif %}
+                        {% endfor %}
+    
                     </div>
-
-                    {% endif %}
-                    {% endfor %}
-
+                    <div class="result-bio">
+                        {{ user[11] }}
+                    </div>
                 </div>
-                <div class="result-bio">
-                    {{ user[11] }}
-                </div>
-            </div>
+            </a>
             {% endfor %}
         </div>
     </div>
