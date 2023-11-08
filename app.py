@@ -134,8 +134,8 @@ def register():
             formData.get('caste').strip(),
             formData.get('education').strip(),
             formData.get('city').strip(),
-            1 if formData.get('date') == 'on' or formData.get('not-sure') else 0,
-            1 if formData.get('marry') == 'on' or formData.get('not-sure') else 0,
+            1 if (formData.get('choice') == 'date' or formData.get('choice') == 'not-sure') else 0,
+            1 if (formData.get('choice') == 'marry' or formData.get('choice') == 'not-sure') else 0,
             formData.get('interests'),
             formData.get('bio').strip(),
             formData.get('email').strip(),
@@ -169,11 +169,13 @@ def register():
         cur.execute(f"SELECT * FROM Users WHERE email = '{data[11]}' AND password = '{data[15]}'")
         user = cur.fetchone()
 
-        shutil.copy('images/profiles/0.webp',f'images/profiles/{user[0]}.webp')
+				
+			
+        shutil.copy(os.path.abspath('static/images/profiles/0.webp'), os.path.abspath(f'static/images/profiles/{user[0]}.webp'))
 
         #creating new relations (recommendations)
 
-        cur.execute(f'SELECT * FROM Users WHERE (age > {user[2]-3} AND age < {user[2]+3}) AND (dating = {user[8]} OR marriage = {user[9]}) AND id != {user[0]};')
+        cur.execute(f'SELECT * FROM Users WHERE (age > {user[2]-10} AND age < {user[2]+10}) AND (dating = {user[8]} OR marriage = {user[9]}) AND id != {user[0]} AND sex != "{user[3]}";')
         relUsers = cur.fetchall()
         cur = db.cursor()
         # cur.execute(f'SELECT first_id, second_id FROM Relations WHERE first_id = {user[0]} OR second_id = {user[0]};')
@@ -182,7 +184,7 @@ def register():
         for relUser in relUsers:
             # if relUser[0] in relatedIDs: continue
             score = 0
-            score += (6 - min(abs(relUser[2] - user[2]), 6))*(10/6)
+            score += (10 - min(abs(relUser[2] - user[2]), 6))
             for i in range(4, 14):
                 if i == 10:
                     for j in range(15):
@@ -203,5 +205,5 @@ def register():
     return render_template('form.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+	app.run(host = '0.0.0.0', port=80)
 
