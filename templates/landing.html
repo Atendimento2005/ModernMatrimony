@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Modern Matrimony</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css') }}">
+{% endblock %}
+
+{% block body %}
+<div id="background"></div>
+<nav>
+    <div id="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+        <div class="logo-text">Modern<br>Matrimony</div>
+    </div>
+    <ul class="nav-list">
+        <li><a href="">How it works</a></li>
+        <li><a href="">Plans</a></li>
+        <li><a href="">About</a></li>    
+    </ul>
+    <a href="/login"><div class="login-button" href="/login" >Login/Signup</div></a>
+</nav>
+<div id="main-container">
+    <div class="main-container-content">
+        <div class="homepage-title">Thinking of a Ring?</div>
+        <div class="homepage-subtitle">let us help you.</div>
+        <div class="homepage-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias officia maiores dolorem voluptas maxime consequuntur incidunt eius mollitia consequatur quas cumque, iste odit odio temporibus.</div>
+        <a href="/register"><div id="start-button" class="login-button">Get Started</div></a>
+    </div>
+    <img src="{{ url_for('static', filename='images/landingImage.png') }}" alt="ring">
+</div>
+{% endblock %}

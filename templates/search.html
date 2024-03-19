@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Modern Matrimony</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+{% endblock %}
+
+{% block body %}
+
+{% set interestText = ["Reading", "Painting", "Photography", "Cooking", "Travelling", "Sports", "Working out", "Listening to music", "Playing music", "Dancing", "Art", "Movies", "Gardening", "Science", "Social Causes"] %}
+
+<div id="background"></div>
+<img draggable="false" id="bgimage" src="{{ url_for('static', filename='images/bgimage.png')}}" alt="">
+
+<nav>
+    <div class="nav-left-container">
+        <a href="/home"><img draggable="false" src="/static/images/icons/hamburger.svg" alt="temp"></a>
+        <a href="/search"><img draggable="false" src="/static/images/icons/search-line.svg" alt="temp"></a>
+        <!-- TEMP IMG -->
+    </div>
+    <div id="logo">
+        <img draggable="false" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+        <div class="logo-text">Modern<br>Matrimony</div>
+    </div>
+    <div class="nav-right-container">
+        <div class="notifications-icon-container pending">
+            <img draggable="false" class="notifications-icon" src="/static/images/icons/notifications.svg" alt="notifications" onclick="toggleNotifications()">
+            <div id="notifications-container" class="dnone">
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style="text-decoration: none;">
+                    <div class="notification">Notification 1</div>
+                </a>
+                <div class="notification">Notification 2</div>
+                <div class="notification">Notification 3</div>
+            </div>
+        </div>
+        <a href="/">
+            <img draggable="false" src="/static/images/profiles/{{id}}.webp" alt="profile-picture" class="nav-profile-icon">
+        </a>
+    </div>
+</nav>
+
+<form action="/search"  autocomplete="off" method="post" draggable="false" id="main-container">
+    <div class="search-container">
+        <div class="filter">
+            <p class="filter-header">Filters</p>
+            <div class="filter-elem">
+                <p class="filter-title">Age Range</p>
+                <div class="age-container">
+                    <input class="age-input" type="number" name="age-min" id="age-min" value="18">
+                    -
+                    <input class="age-input" type="number" name="age-max" id="age-max" value="100">
+                </div>
+            </div>
+            <div class="filter-elem">
+                <p class="filter-title">Select Cities</p>
+                <div class="text-input">
+                    <img src="{{ url_for('static', filename='images/icons/city_icon.svg') }}" alt="">
+                    <input id="city" class="input input1 autocomplete-input" placeholder="City" name="city">
+                </div>
+            </div>
+            <div class="filter-elem interests-elem">
+                <p class="filter-title">Featured Interests</p>
+                <input type="text" name="interests" class="dnone" id="interests-input" value="_______________">
+                <div id="interests-container">
+                </div>
+            </div>
+        </div>
+        <div class="search-bar-container" style="position: relative;">
+            <input type="text" name="searchbar" id="search-bar" placeholder="Search here for your ideal match">
+            <button style="position: absolute; right: 2.75rem; height: 1.5rem; margin-right: 1rem; border: none; background-color: transparent;" type="submit"><img draggable="false" src="{{ url_for('static', filename='images/icons/search.svg')}}" alt=""></button>
+        </div>
+        <div id="search-results-container">
+            {% for user in data %}
+            <a href="/profile/{{user[0]}}" style="text-decoration: none;">
+                <div class="result">
+                    <img src="/static/images/profiles/{{ user[0] }}.webp" alt="" class="result-image">
+                    <div class="result-info">
+                        <p class="result-name">{{ user[1] }}, {{ user[2] }}</p>
+    
+                        {% for i in range(user[10]|length) %}
+                        {% if user[10][i] == '1' %}
+    
+                        <div class="tag">
+                            <img draggable="false" src="/static/images/icons/online.svg" alt="" class="tag-icon">
+                            <p class="tag-text">{{ interestText[i] }}</p>
+                        </div>
+    
+                        {% endif %}
+                        {% endfor %}
+    
+                    </div>
+                    <div class="result-bio">
+                        {{ user[11] }}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    
+</form>
+
+<script>
+
+    const interests = ["reading", "painting", "photography", "cooking", "travelling", "sports", "workout", "lmusic", "pmusic", "dancing", "art", "movies", "gardening", "science", "social"]
+    const interestText = {
+        "reading": "Reading",
+        "painting": "Painting",
+        "photography": "Photography",
+        "cooking": "Cooking",
+        "travelling": "Travelling",
+        "sports": "Sports",
+        "workout": "Working out",
+        "lmusic": "Listening to music",
+        "pmusic": "Playing music",
+        "dancing": "Dancing",
+        "art": "Art",
+        "movies": "Movies",
+        "gardening": "Gardening",
+        "science": "Science",
+        "social": "Social Causes",
+    }
+
+    function toggleNotifications(){
+        notifications = document.getElementById('notifications-container')
+        notifications.classList.toggle("dnone")
+    }
+
+    container = document.getElementById("interests-container")
+    for (i in interests) {
+        form = document.getElementById('myform')
+        interestsInput = document.getElementById('interests-input')
+        interestNode = document.createElement('div')
+        interestNode.id = interests[i]
+        interestNode.classList.add("interest")
+        interestNode.innerHTML = `${interestText[interests[i]]}`
+        interestNode.onclick = (function (id, index) {
+            return function () {
+                var interestData = document.getElementById('interests-input')
+                if (interestData.value[index] == '_') {
+                    interestData.value = interestData.value.substring(0, index)+'1'+interestData.value.substring(Number(index)+1)
+                } else {
+                    interestData.value = interestData.value.substring(0, index)+'_'+interestData.value.substring(Number(index)+1)
+                }
+                document.getElementById(id).classList.toggle('checked')
+            }
+        })(interests[i], i)
+        container.appendChild(interestNode)
+    }
+
+</script>
+<script src="../static/scripts/form.js"></script>
+
+{% endblock %}

@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Modern Matrimony</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+{% endblock %}
+
+{% block body %}
+
+{% set interestText = ["Reading", "Painting", "Photography", "Cooking", "Travelling", "Sports", "Working out", "Listening to music", "Playing music", "Dancing", "Art", "Movies", "Gardening", "Science", "Social Causes"] %}
+
+<div id="background"></div>
+<img draggable="false" id="bgimage" src="{{ url_for('static', filename='images/bgimage.png')}}" alt="">
+
+<nav>
+    <div class="nav-left-container">
+        <img draggable="false" src="/static/images/icons/hamburger.svg" alt="temp">
+        <a href="/search"><img draggable="false" src="/static/images/icons/search-line.svg" alt="temp"></a>
+        <!-- TEMP IMG -->
+    </div>
+    <div id="logo">
+        <img draggable="false" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+        <div class="logo-text">Modern<br>Matrimony</div>
+    </div>
+    <div class="nav-right-container">
+        <div class="notifications-icon-container pending">
+            <img draggable="false" class="notifications-icon" src="/static/images/icons/notifications.svg" alt="notifications" onclick="toggleNotifications()">
+            <div id="notifications-container" class="dnone">
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" style="text-decoration: none;">
+                    <div class="notification">Notification 1</div>
+                </a>
+                <div class="notification">Notification 2</div>
+                <div class="notification">Notification 3</div>
+            </div>
+        </div>
+        <a href="/">
+            <img draggable="false" src="/static/images/profiles/{{id}}.webp" alt="profile-picture" class="nav-profile-icon">
+        </a>
+    </div>
+</nav>
+
+<div draggable="false" id="main-container">
+    <div class="greeting">
+        <h1>Welcome, {{name}}</h1>
+        <h2>Your perfect match awaits!</h2>
+    </div>
+    <div class="suggestion-container">
+        <p class="suggestion-heading">Our Picks:</p>
+        <div class="suggestion-card-container" id="ourpicks">
+            {% for user in relation_data%}
+            <a href="/profile/{{user['id']}}" style="text-decoration: none;">
+                <div class="suggestion-card">
+                    <img draggable="false" class = "suggestion-img"src="/static/images/profiles/{{user['id']}}.webp" alt="profile-picture">
+                    <div class="suggestion-info">
+                        <p class="suggestion-name">{{user['name']}}, {{user['age']}}</p>
+                        <p class="suggestion-bio">{{user['bio']}}</p>
+                    </div>
+                    <div class="suggestion-tags-container">
+                        {% for i in range(user['interests']|length) %}
+                            {% if user['interests'][i] == '1' %}
+                                <div class="tag">
+                                    <img draggable="false" src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
+                                    <p class="suggestion-tag-text">{{interestText[i]}}</p>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="suggestion-container">
+        <p class="suggestion-heading">Near You  :</p>
+        <div class="suggestion-card-container" id="nearyou">
+            {% for user in relation_data%}
+            <a href="/profile/{{user['id']}}" style="text-decoration: none;">
+                <div class="suggestion-card">
+                    <img draggable="false" class = "suggestion-img"src="/static/images/profiles/{{user['id']}}.webp" alt="profile-picture">
+                    <div class="suggestion-info">
+                        <p class="suggestion-name">{{user['name']}}, {{user['age']}}</p>
+                        <p class="suggestion-bio">{{user['bio']}}</p>
+                    </div>
+                    <div class="suggestion-tags-container">
+                        {% for i in range(user['interests']|length) %}
+                        {% if user['interests'][i] == '1' %}
+                        <div class="tag">
+                            <img draggable="false" src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
+                            <p class="suggestion-tag-text">{{interestText[i]}}</p>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+            </div>
+        </div>
+    <div class="my-profile-container">
+        <div class="profile-header">
+            <p class="suggestion-heading">Your Profile Card:</p>
+            <a href="/test" class="profile-edit-link">Edit</a>
+        </div>
+        <div class="my-profile">
+            <img draggable="false" class = 'profile-picture' src="/static/images/profiles/{{id}}.webp" alt="profile picture">
+            <div class="profile-info-container">
+                <p class="profile-info-name">{{name}}, {{age}}</p>
+                <div class="profile-tags-container">
+                    {% for i in range(interests|length) %}
+                        {% if interests[i] == '1' %}
+                            <div class="tag">
+                                <img draggable="false" src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
+                                <p class="profile-tag-text">{{interestText[i]}}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <p class="profile-info-bio">{{bio}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p class="footer-text">Made with love, to find love.<br>The students of 12J</p>
+    <div class = 'footer-logo'>
+        <img draggable="false" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+        <div class="logo-text">Modern<br>Matrimony</div>
+    </div>
+</footer>
+
+<script>
+    function toggleNotifications(){
+        notifications = document.getElementById('notifications-container')
+        notifications.classList.toggle("dnone")
+    }
+</script>
+<script src="/static/scripts/scroll.js"></script>
+{% endblock %}

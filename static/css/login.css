@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+
+#background{
+    background: linear-gradient(307.05deg, #D2CDFF 35.26%, #FFFFFF 100.99%);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
+
+nav{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 34px;
+    letter-spacing: 0.01em;
+    height: 20vh;
+    padding: 3rem;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 45px;
+    /* margin-right: auto; */
+    line-height: 35px;
+    letter-spacing: -0.03em;
+    color: #5831DD;
+}
+
+#main-container{
+    padding: 3rem;
+    padding-top: 0;
+    height: calc(100vh - 6rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#form-container{
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05)), rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12);
+    border-radius: 50px;
+    padding: 3rem;
+    height: 65.5vh;
+    aspect-ratio: 1.6;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    /* margin-top: 80px; */
+}
+
+h1{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 45px;
+    line-height: 35px;
+    /* identical to box height, or 78% */
+    letter-spacing: -0.03em;
+    color: rgba(54, 21, 168, 0.7);
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 50%;
+    height: 60%;
+}
+
+.text-input{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    position: relative;
+}
+
+.text-input > img{
+    position: absolute;
+    aspect-ratio: 1;
+    height: 24px;
+    align-items: flex-start;
+    left: 15px;
+}
+
+.input{
+    width: 100%;
+    height: 6vh;
+    padding-left: 50px;
+    background: rgba(255, 255, 255, 0.7);
+    /* Focus ring */
+    box-shadow: 0px 0px 0px 5px rgba(132, 66, 211, 0.48);
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    color: rgba(47, 43, 67, 0.6);
+    transition: .5s;
+    
+}
+
+.input:focus {
+    box-shadow: 0px 0px 2px 7px hsla(254, 50%, 50%, 0.7);
+}
+
+.check-input{
+    align-self: flex-start;
+    display: flex;
+    justify-content: center;
+    gap: 0.75em;
+}
+
+.check-input > input{
+    display: none;
+}
+
+.check-input > input:checked + #text-label::before{
+    transform: scale(1) rotateZ(0deg);
+}
+
+.check-input > label{
+    position: relative;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    color: rgba(47, 43, 67, 0.6);
+    left: 2.25em;
+    cursor: pointer;
+}
+
+.check-input > label::before{
+    content: "";
+    background: url("../images/icons/check_icon.svg");
+    background-position: center;
+    background-size: contain;
+    aspect-ratio: 1;
+    height: 24px;
+    position: absolute;
+    left: -2.24em;
+    top: 0.05em;
+    transform: scale(0) rotateZ(180deg);
+    transition: all 0.4s cubic-bezier(0.54, 0.01,0 ,1.49);
+    z-index: 2;
+}
+
+.check-input > label::after{
+    content: "";
+    height: 24px;
+    aspect-ratio: 1;
+    background: #F6F6F8;
+    border: 1px solid rgba(47, 43, 67, 0.5);
+    border-radius: 4px;
+    position: absolute;
+    left: -2.25em;
+}
+
+#submit{
+    width: 100%;
+    height: calc(6vh + 10px);
+    background: #674CBF;
+    box-shadow: 0px 12px 36px rgba(47, 43, 67, 0.12);
+    border-radius: 50px;
+    color: #FFFFFF;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    margin-bottom: -15px;
+    border: none;
+    transition: transform 200ms ease-in,
+                color 200ms ease-in,
+                background-color 200ms ease-in;
+    cursor: pointer;
+}
+
+#submit:hover{
+    transform: scale(1.01);
+    color: #674CBF;
+    background-color: #FFFFFF;
+}
+
+p{
+    display:inline;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+a{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    text-decoration-line: underline;
+    color: #92909D;
+}

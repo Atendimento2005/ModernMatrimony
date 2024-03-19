@@ -1,0 +1,311 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Modern Matrimony</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form.css' ) }}">
+{% endblock %}
+
+{% block body %}
+<div id="background"></div>
+<nav>
+    <div id="logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+        <div class="logo-text">Modern<br>Matrimony</div>
+    </div>
+</nav>
+<form action="/register" method="POST" id="main-container" autocomplete="off">
+    <div class="form-container " id="form-container1">
+        <div class="head">
+            <h1>Registration</h1>
+            <h2 id>Personal Details</h2>
+        </div>
+        <div class="registration-form">
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/person_icon.svg') }}" alt="">
+                <input type="text" class="input input1" placeholder="First Name" name="f_name" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/person_icon.svg') }}" alt="">
+                <input type="text" class="input input1" placeholder="Last Name" name="l_name" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/person_icon.svg') }}" alt="">
+                <input type="number" class="input input1" placeholder="Phone Number" name="ph" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/at_icon.svg') }}" alt="">
+                <input type="email" class="input input1" placeholder="Email I.D." name="email" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/key_icon.svg') }}" alt="">
+                <input type="password" class="input input1" placeholder="Password" name="password" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/gender_icon.svg') }}" alt="">
+                <input type="text" class="input input1" placeholder="Gender" id="gender" name="gender" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/pin_icon.svg') }}" alt="">
+                <input type="number" class="input input1" placeholder="Pin Code" name="pincode" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/city_icon.svg') }}" alt="">
+                <input id="city" class="input input1 autocomplete-input" placeholder="City" name="city" required>
+            </div>
+            <input id="submit1" class="submit" type="button" value="Next">
+        </div>
+    </div>
+    <div class="form-container display" id="form-container2">
+        <div class="head">
+            <h1>Registration</h1>
+            <h2>Other Details</h2>
+        </div>
+        <div class="registration-form">
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/board_icon.svg') }}" alt="">
+                <input type="text" id="education" name="education" class="input input2" placeholder="Highest Education Level" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/briefcase_icon.svg') }}" alt="">
+                <input type="text" id="occupation" name="occupation" class="input input2" placeholder="Occupation" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/school_icon.svg') }}" alt="">
+                <input type="text" id="alma" name="alma" class="input input2" placeholder="Alma Matter" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/cake_icon.svg') }}" alt="">
+                <input type="text" name="dob" class="input input2" placeholder="Date of Birth" onfocus="this.type='date'" onblur="this.type='text'" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/religion_icon.svg') }}" alt="">
+                <input type="text" id="religion" name="religion" class="input input2" placeholder="Religion" required>
+            </div>
+            <div class="text-input">
+                <img src="{{ url_for('static', filename='images/icons/caste_icon.svg') }}" alt="">
+                <input type="text" id="caste" name="caste" class="input input2" placeholder="Caste" required>
+            </div>
+            <div class="check-input">
+                <input type="checkbox" name="terms" class="input2" id="checkbox">
+                <label for="checkbox" id="text-label">I Agree to all the <a href="">Terms and Conditions</a></label>
+            </div>
+            <input type="button" id="submit2" class="submit" value="Next">
+        </div>
+    </div>
+    <div class="form-container display" id="form-container3">
+        <h1>I'm Looking to</h1>
+        <div action="" class="choice-form">
+            <input type="radio" value="date" class="date input3" name="choice">
+            <input type="radio" value="marry" class="marry" name="choice">
+            <input type="radio" value="not-sure" class="not-sure" name="choice">
+            <div class="choice-container">
+                <div class="date choice">
+                    <h2>Date</h2>
+                    <img src="{{ url_for('static', filename='images/choices/date.png') }}" alt="">
+                </div>
+                <div class="marry choice">
+                    <h2>Marry</h2>
+                    <img src="{{ url_for('static', filename='images/choices/marry.png') }}" alt="">
+                </div>
+                <div class="not-sure choice">
+                    <h2>I'm not sure</h2>
+                    <img src="{{ url_for('static', filename='images/choices/not_sure.png') }}" alt="">
+                </div>
+            </div>
+            <input type="text" id="dummy_text_input" class="dummy_input" tabindex="-1" value="(You can always change this later on)">
+            <input type="button" id="submit3" class="submit" value="Next">
+        </div>
+    </div>
+    <div class="form-container display" id="form-container4">
+        <input type="text" name="interests" class="input4" id="interests-input" value="000000000000000" required>
+        <h1>Select your Interests to find Like-minded Matches</h1>
+        <h2>(minimum 5)</h2>
+        <div action="/test" method="post" id="myform"></div>
+        <div id="interests-container">
+        </div>
+        <input id="start-button" type="button" class="button submit" value="Next">
+    </div>
+    <div class="form-container display" id="form-container5">
+        <h1>Complete your Profile!</h1>
+            <div class="bio-image-container">
+                <div class="bio-container">
+                    <img src="/static/images/icons/pfp-icon.png" id="pfp-icon" alt="pfp-icon">
+                    <div class="image-upload">Upload Profile Picture</div>
+                </div>
+                <div class="bio-container">
+                    <p class="bio-header">Write something about yourself</p>
+                    <textarea class="bio-input input5" placeholder="About me (max 200 characters)" type="text" id="bio" name="bio" required minlength="30" maxlength="200"></textarea>
+                </div>
+            </div>
+            <input type="submit" id="submit4" formaction="/register" formmethod="post" class="submit button" value="Finish">
+    </div>
+</form>
+
+<script src="../static/scripts/form.js"></script>
+
+<script>
+    const interests = ["reading", "painting", "photography", "cooking", "travelling", "sports", "workout", "lmusic", "pmusic", "dancing", "art", "movies", "gardening", "science", "social"]
+    const interestText = {
+        "reading": "Reading",
+        "painting": "Painting",
+        "photography": "Photography",
+        "cooking": "Cooking",
+        "travelling": "Travelling",
+        "sports": "Sports",
+        "workout": "Working out",
+        "lmusic": "Listening to music",
+        "pmusic": "Playing music",
+        "dancing": "Dancing",
+        "art": "Art",
+        "movies": "Movies",
+        "gardening": "Gardening",
+        "science": "Science",
+        "social": "Social Causes",
+    }
+
+    var x = document.getElementsByClassName('submit');
+    var form = document.getElementById('main-container');
+    var l = x.length;
+    
+    function validation(i) {
+        let a = document.getElementsByClassName(`input${i}`)
+        if(i==3){ document.getElementById('dummy_text_input').setCustomValidity('') }
+        for (j=0;j<a.length;j++){
+            a[j].setCustomValidity('');
+            if(!a[j].checkValidity()){
+                    a[j].reportValidity()
+                    return false
+            }
+            if (i==1){
+                if (a[j].name == 'ph'){
+                    if(String(parseInt(a[j].value)).length != 10){
+                        a[j].setCustomValidity(`Enter a 10-digit Phone no. Entered value is ${String(parseInt(a[j].value)).length}-digit`)
+                        a[j].reportValidity()
+                        return false
+                    }
+                }
+                if (a[j].name == 'gender'){
+                    if(!['male','female'].includes(String(a[j].value).trim().toLowerCase())){
+                        a[j].setCustomValidity(`Enter either 'Male' or 'Female'`)
+                        a[j].reportValidity()
+                        return false
+                    }
+                }
+                if (a[j].name == 'pincode'){
+                    if(String(parseInt(a[j].value)).length != 6){
+                        a[j].setCustomValidity(`Enter a 6-digit pincode. Entered value is ${String(parseInt(a[j].value)).length}-digit`)
+                        a[j].reportValidity()
+                        return false
+                    }
+                }
+            }
+            if (i==2){
+                if (a[j].name == 'terms'){
+                    if (!a[j].checked){
+                        document.querySelector('#checkbox').setCustomValidity('Please check the box.')
+                        document.querySelector('#checkbox').reportValidity()
+                        return false
+                    }
+                }
+                if (a[j].name == 'dob'){
+                    let date = new Date(`${a[j].value}T00:00`);
+                    const curr_date = new Date();
+                    let diffTime = Math.abs(curr_date - date);
+                    const diffyr = Math.floor(diffTime / (1000 * 60 * 60 * 24 * 365.25));
+                    if (diffyr < 18){
+                        a[j].setCustomValidity('You must be 18 years old or above');
+                        a[j].reportValidity()
+                        return false
+                    }
+                    if (diffyr < 0){
+                        a[j].setCustomValidity('Set a Valid Date');
+                        a[j].reportValidity()
+                        return false
+                    }
+                }
+            }
+            if (i==3){
+                var selected = document.querySelector('input[type="radio"]:checked')
+                if(selected == null){
+                    var dummy_input = document.getElementById('dummy_text_input')
+                    dummy_input.setCustomValidity('Please select atleast one option');
+                    dummy_input.reportValidity();
+                    return false
+                }
+            }
+            if (i==4){
+                if (a[j].name == 'interests'){
+                    if(a[j].value.split('1').length - 1 < 5){
+                        a[j].setCustomValidity('Please select atleast 5 interests')
+                        a[j].reportValidity()
+                        return false
+                    }
+                }
+            }
+        }
+        return true
+    }
+
+    for (i = 0; i < l; i++) {
+        x[i].onclick = ((num, form) => {
+            return () => {
+                if (validation(num+1))  {
+                     if (num<4) {   
+                        document.getElementsByClassName('form-container')[num].classList.add('current')
+
+                        if (num == 2) {
+                            container = document.getElementById("interests-container")
+                            for (i in interests) {
+                                form = document.getElementById('myform')
+                                interestsInput = document.getElementById('interests-input')
+                                interestNode = document.createElement('div')
+                                interestNode.id = interests[i]
+                                interestNode.classList.add("interest")
+                                interestNode.innerHTML = `
+                                    <img src="/static/images/interests/${interests[i]}.png" class="interest-image" alt="">
+                                    <p class="interest-text">${interestText[interests[i]]}</p>
+                                `
+                                interestNode.onclick = (function (id, index) {
+                                    return function () {
+                                        var interestData = document.getElementById('interests-input')
+                                        if (interestData.value[index] == '0') {
+                                            interestData.value = interestData.value.substring(0, index)+'1'+interestData.value.substring(Number(index)+1)
+                                        } else {
+                                            interestData.value = interestData.value.substring(0, index)+'0'+interestData.value.substring(Number(index)+1)
+                                        }
+                                        document.getElementById(id).classList.toggle('checked')
+                                    }
+                                })(interests[i], i)
+                                container.appendChild(interestNode)
+                            }   
+                        }
+
+                        document.getElementsByClassName('form-container')[num + 1].classList.remove('display')
+                    }
+                    else{
+                        form.submit()
+                    }
+                }
+            }
+        })(i, form)
+    }
+
+    c = document.getElementsByClassName('choice')
+    for (i in c) {
+        c[i].onclick = ((elems, num) => {
+            return () => {
+                radio = document.getElementsByClassName(elems[num].classList[0])[0]
+                radio.checked = !radio.checked
+                for (i=0;i<elems.length;i++){
+                    if(i == num){
+                        elems[i].classList.toggle('checked')
+                        continue
+                    }
+                    elems[i].classList.remove('checked')
+                }
+            }
+        })(c, i)
+    }
+
+</script>
+{% endblock %}

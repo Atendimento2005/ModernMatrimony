@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Modern Matrimony</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css' ) }}">
+{% endblock %}
+
+{% block body %}
+
+{% set interestText = ["Reading", "Painting", "Photography", "Cooking", "Travelling", "Sports", "Working out", "Listening to music", "Playing music", "Dancing", "Art", "Movies", "Gardening", "Science", "Social Causes"] %}
+
+<div id="background"></div>
+<img draggable="false" id="bgimage" src="{{ url_for('static', filename='images/bgimage.png')}}" alt="">
+
+<nav>
+    <div class="nav-left-container">
+        <a href="/home"><img draggable="false" src="/static/images/icons/hamburger.svg" alt="temp"></a>
+        <a href="/search"><img draggable="false" src="/static/images/icons/search-line.svg" alt="temp"></a>
+        <!-- TEMP IMG -->
+    </div>
+    <div id="logo">
+        <img draggable="false" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo">
+        <div class="logo-text">Modern<br>Matrimony</div>
+    </div>
+    <div class="nav-right-container">
+        <div class="notifications-icon-container pending">
+            <img draggable="false" class="notifications-icon" src="/static/images/icons/notifications.svg" alt="notifications" onclick="toggleNotifications()">
+            <div id="notifications-container" class="dnone">
+                <div class="notification">Arim Kaji</div>
+                <div class="notification">Boddo</div>
+                <div class="notification">Paji</div>
+            </div>
+        </div>
+        <a href="/">
+            <img draggable="false" src="/static/images/profiles/{{ user[0] }}.webp" alt="profile-picture" class="nav-profile-icon">
+        </a>
+    </div>
+</nav>
+
+<div class="main-container">
+    <div class="profile-card">
+        <div class="banner-img"><img src="{{ url_for('static', filename='images/banner_profile.png') }}" alt=""></div>
+        <div class="data-div">
+            <img class="profile-picture" src="/static/images/profiles/{{ user[0] }}.webp" alt="">
+            <div class="interest-tags">
+                {% for i in range(user[10]|length) %}
+                    {% if user[10][i] == '1' %}
+                        <div class="tag">
+                            <img draggable="false" src="/static/images/icons/online.svg" alt="" class="suggestion-tag-icon">
+                            <p class="suggestion-tag-text">{{interestText[i]}}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="data-container">
+                <div class="text-data">
+                    <p class="name-box">{{ user[1] }}, {{ user[2] }}</p>
+                    <div class="career-cont">
+                        <div class="data1 datal"><img class="data-icon" src="{{ url_for('static', filename='images/icons/city_icon.svg') }}" alt="">{{ user[7] }}</div>
+                        <div class="data2 datal"><img class="data-icon" src="{{ url_for('static', filename='images/icons/briefcase_icon.svg') }}" alt="">{{ user[14] }}</div>
+                        <div class="data3 datar"><img class="data-icon" src="{{ url_for('static', filename='images/icons/board_icon.svg') }}" alt="">{{ user[6] }}</div>
+                        <div class="data4 datar"><img class="data-icon" src="{{ url_for('static', filename='images/icons/school_icon.svg') }}" alt="">{{ user[15] }}</div>
+                    </div>
+                </div>
+                <button class="match-btn">Match!</button>
+            </div>
+        </div>
+    </div>
+    <div class="about-card">
+        <p class="about-header">About</p>
+        <p class="about-body">{{ user[11] }}</p>
+    </div>
+</div>
+
+
+<script>
+    function toggleNotifications(){
+        notifications = document.getElementById('notifications-container')
+        notifications.classList.toggle("dnone")
+    }
+</script>
+
+{% endblock %}
